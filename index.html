@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASX ETF Screener</title>
+<meta name="description" content="Filterable screener of ASX-listed ETFs above A$100M AUM: MER, category, 1Y return and yield.">
+<link rel="icon" href="data:,">
+<style>
+:root{--bg:#fff;--panel:#f6f7f9;--text:#131722;--muted:#6a6d78;--line:#e0e3eb;--accent:#2962ff;--up:#0a7f4f;--down:#c62828;--hover:#f0f3fa;--warn:#fff4d6;--warnText:#6b4e00}
+@media (prefers-color-scheme:dark){:root{--bg:#131722;--panel:#1e222d;--text:#d1d4dc;--muted:#8b8e99;--line:#2a2e39;--accent:#6c9cff;--up:#4cc38a;--down:#ff7b7b;--hover:#252a37;--warn:#3a3016;--warnText:#f2d589}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:1280px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:0 0 2px}
+.sub{margin:0 0 14px;color:var(--muted)}
+.warn{background:var(--warn);color:var(--warnText);padding:8px 12px;border-radius:6px;margin:0 0 12px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.f{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}
+.f input[type=search],.f input[type=number]{font:inherit;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+.f.search{flex:1 1 220px}.f.search input{width:100%}
+.f input[type=number]{width:120px}
+.f input:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+details.dd{position:relative}
+details.dd>summary{list-style:none;cursor:pointer;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 10px;white-space:nowrap}
+details.dd>summary::-webkit-details-marker{display:none}
+details.dd>summary::after{content:" ▾";color:var(--muted)}
+details.dd .panel{position:absolute;z-index:20;top:calc(100% + 4px);left:0;min-width:270px;max-height:340px;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.panel label{display:flex;gap:8px;align-items:center;padding:3px 4px;font-size:13px;color:var(--text);cursor:pointer}
+.panel .n{margin-left:auto;color:var(--muted)}
+.row2{display:flex;gap:6px;margin-bottom:6px}
+button{font:inherit;cursor:pointer}
+.btn,.row2 button,.chipbtn{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+.btn:hover,.row2 button:hover,.chipbtn:hover{background:var(--hover)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 6px;color:var(--muted);font-size:12px}
+.chipbtn{padding:3px 9px;font-size:12px;border-radius:999px}
+.types{display:flex;gap:6px;flex-wrap:wrap}
+.types label{display:inline-flex;gap:5px;align-items:center;font-size:13px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer}
+#count{margin:8px 0;color:var(--muted)}
+.tablewrap{overflow:auto;max-height:calc(100vh - 250px);min-height:320px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+td.name{white-space:normal;min-width:240px}
+th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+thead th{position:sticky;top:0;background:var(--panel);z-index:5;padding:0}
+thead th button{all:unset;display:block;box-sizing:border-box;width:100%;padding:9px 10px;cursor:pointer;font-weight:600;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+thead th.num button{text-align:right}
+thead th button:hover{color:var(--text)}
+thead th button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+tbody tr:hover{background:var(--hover)}
+td.code a{font-weight:700;color:var(--accent);text-decoration:none}
+td.code a:hover{text-decoration:underline}
+td.cat{color:var(--muted)}
+.badge{font-size:11px;border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--muted)}
+.up{color:var(--up)}.down{color:var(--down)}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+details.imp{margin-top:18px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--panel)}
+details.imp summary{cursor:pointer;font-weight:600}
+details.imp .body{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+details.imp ol{margin:0;padding-left:20px;color:var(--muted)}
+.improw{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#impstatus{color:var(--muted)}
+footer{margin-top:16px;color:var(--muted);font-size:12px}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <h1>ASX ETF Screener</h1>
+  <p class="sub" id="asof">Loading data…</p>
+  <div id="warn" class="warn" hidden></div>
+
+  <section class="filters" aria-label="Filters">
+    <label class="f search">Search ticker or name
+      <input id="q" type="search" placeholder="e.g. VAS, gold, Vanguard" autocomplete="off">
+    </label>
+    <label class="f">Min AUM (A$ m)
+      <input id="aum" type="number" min="0" step="50" value="100" inputmode="numeric">
+    </label>
+    <label class="f">Max MER (% p.a.)
+      <input id="mer" type="number" min="0" step="0.05" placeholder="any" inputmode="decimal">
+    </label>
+    <label class="f">Min yield (%)
+      <input id="yld" type="number" min="0" step="0.5" placeholder="any" inputmode="decimal">
+    </label>
+    <div class="f">Category
+      <details class="dd" id="catdd"><summary id="catlabel">All</summary><div class="panel" id="catlist"></div></details>
+    </div>
+    <button class="btn" id="reset" type="button">Reset</button>
+  </section>
+
+  <div class="chips" id="aumchips">
+    <span>Quick AUM:</span>
+    <button class="chipbtn" type="button" data-aum="100">A$100M+</button>
+    <button class="chipbtn" type="button" data-aum="500">A$500M+</button>
+    <button class="chipbtn" type="button" data-aum="1000">A$1B+</button>
+    <button class="chipbtn" type="button" data-aum="5000">A$5B+</button>
+    <span style="margin-left:12px">Type:</span>
+    <span class="types" id="typelist"></span>
+  </div>
+
+  <div id="count" role="status" aria-live="polite"></div>
+  <div class="tablewrap">
+    <table id="t"><thead id="thead"></thead><tbody id="tbody"></tbody></table>
+  </div>
+
+  <details class="imp" id="imp">
+    <summary>Update the data (no code or AI needed)</summary>
+    <div class="body">
+      <ol>
+        <li>Download the latest <b>Excel</b> report from the <a href="https://www.asx.com.au/issuers/investment-products/asx-investment-products-monthly-report" target="_blank" rel="noopener noreferrer">ASX Investment Products monthly reports</a> page.</li>
+        <li>Choose it below (a .xlsx from the ASX, or an existing data.csv).</li>
+        <li>Click <b>Copy data.csv</b> to keep the refreshed file, or just ask Claude to "update".</li>
+      </ol>
+      <div class="improw">
+        <input id="file" type="file" accept=".xlsx,.csv,text/csv">
+        <label>Keep products with AUM ≥ A$ <input id="keepmin" type="number" min="0" step="50" value="100" style="width:90px"> m</label>
+        <button class="btn" id="cp" type="button" disabled>Copy data.csv</button>
+      </div>
+      <div id="impstatus" role="status" aria-live="polite"></div>
+    </div>
+  </details>
+
+  <footer>
+    Data: <span id="src">ASX Investment Products Report</span>. AUM is fund size in A$ millions; returns are total returns to the report date; MER is the management expense ratio. Tickers link to the TradingView symbol page. For information only, not financial advice.
+  </footer>
+</main>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = v => { if (v == null) return null; v = String(v).trim(); if (v === '' || /^n\/?a$/i.test(v)) return null; const n = Number(v); return Number.isFinite(n) ? n : null; };
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const TYPE_HELP = {ETF:'Passive ETF', Active:'Actively managed ETF', Complex:'ASX "Complex" product (e.g. geared, inverse, yield-maximiser)', SP:'Structured product (e.g. physical metals)'};
+const COLS = [
+  {k:'code', l:'Ticker'}, {k:'name', l:'Name'}, {k:'category', l:'Category'}, {k:'type', l:'Type'},
+  {k:'fum', l:'AUM', num:1}, {k:'mer', l:'MER %', num:1}, {k:'ret1y', l:'1Y return', num:1}, {k:'yld', l:'Yield %', num:1}
+];
+let ALL = [], META = {}, CATS = [], TYPES = [];
+let selCats = new Set(), selTypes = new Set();
+let sort = {k:'fum', d:-1};
+
+/* ---------- formatting ---------- */
+const fmtAum = m => m >= 1000 ? 'A$' + (m / 1000).toFixed(m >= 10000 ? 1 : 2) + 'B' : 'A$' + Math.round(m) + 'M';
+const fmtPct = (v, signed) => v == null ? '—' : (signed && v > 0 ? '+' : '') + v.toFixed(2) + '%';
+function fmtDate(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1].slice(0, 3)} ${m[1]}` : ''; }
+
+/* ---------- CSV ---------- */
+function parseCSV(text) {
+  const meta = {};
+  const body = text.replace(/^﻿/, '').split(/\r?\n/).filter(l => {
+    if (l.startsWith('#')) { for (const m of l.slice(1).matchAll(/(\w+)=([^;]*)/g)) meta[m[1]] = m[2].trim(); return false; }
+    return l.trim() !== '';
+  }).join('\n');
+  const out = []; let row = [], f = '', q = false;
+  for (let i = 0; i < body.length; i++) {
+    const c = body[i];
+    if (q) { if (c === '"') { if (body[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n') { row.push(f); out.push(row); row = []; f = ''; }
+    else f += c;
+  }
+  row.push(f); out.push(row);
+  const head = out.shift().map(h => h.trim());
+  const need = ['code','type','name','category','fum_m','mer','ret1y','yield'];
+  const miss = need.filter(h => !head.includes(h));
+  if (miss.length) throw new Error('CSV is missing columns: ' + miss.join(', '));
+  const ix = Object.fromEntries(head.map((h, i) => [h, i]));
+  const rows = out.filter(r => r.length > 1).map(r => ({
+    code: r[ix.code].trim(), type: r[ix.type].trim(), name: r[ix.name].trim(), category: r[ix.category].trim(),
+    fum: num(r[ix.fum_m]), mer: num(r[ix.mer]), ret1y: num(r[ix.ret1y]), yld: num(r[ix.yield])
+  })).filter(r => r.code && r.fum != null);
+  return {rows, meta};
+}
+function toCSV(rows, meta) {
+  const q = s => /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  const f = (v, d) => v == null ? '' : String(+v.toFixed(d));
+  const sorted = rows.slice().sort((a, b) => b.fum - a.fum);
+  return `# as_of=${meta.as_of || ''}; source=${(meta.source || '').replace(/;/g, ',')}\n` +
+    ['code,type,name,category,fum_m,mer,ret1y,yield', ...sorted.map(r => [r.code, r.type, q(r.name), q(r.category), f(r.fum, 0), f(r.mer, 2), f(r.ret1y, 2), f(r.yld, 2)].join(','))].join('\n') + '\n';
+}
+
+/* ---------- ASX .xlsx importer (zip + XML, no libraries) ---------- */
+const unxml = s => s.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&#(\d+);/g,(_, n) => String.fromCharCode(+n)).replace(/&amp;/g,'&');
+async function unzip(buf) {
+  const u = new Uint8Array(buf), dv = new DataView(buf), td = new TextDecoder();
+  let e = u.length - 22;
+  while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('This does not look like an .xlsx file');
+  const n = dv.getUint16(e + 10, true); let p = dv.getUint32(e + 16, true); const files = {};
+  for (let i = 0; i < n; i++) {
+    const nl = dv.getUint16(p + 28, true), el = dv.getUint16(p + 30, true), cl = dv.getUint16(p + 32, true);
+    files[td.decode(u.subarray(p + 46, p + 46 + nl))] = {method: dv.getUint16(p + 10, true), csz: dv.getUint32(p + 20, true), off: dv.getUint32(p + 42, true)};
+    p += 46 + nl + el + cl;
+  }
+  return async name => {
+    const f = files[name]; if (!f) return null;
+    const nl = dv.getUint16(f.off + 26, true), el = dv.getUint16(f.off + 28, true);
+    const data = u.subarray(f.off + 30 + nl + el, f.off + 30 + nl + el + f.csz);
+    if (f.method === 0) return td.decode(data);
+    const ds = new DecompressionStream('deflate-raw'), w = ds.writable.getWriter();
+    w.write(data); w.close();
+    return await new Response(ds.readable).text();
+  };
+}
+async function readXlsx(buf, keepMin) {
+  const get = await unzip(buf);
+  const wb = await get('xl/workbook.xml'), rels = await get('xl/_rels/workbook.xml.rels');
+  if (!wb || !rels) throw new Error('Unexpected workbook structure');
+  const relMap = {};
+  for (const m of rels.matchAll(/<Relationship\b[^>]*>/g)) {
+    const id = /\bId="([^"]+)"/.exec(m[0]), t = /\bTarget="([^"]+)"/.exec(m[0]);
+    if (id && t) relMap[id[1]] = t[1].startsWith('/') ? t[1].slice(1) : 'xl/' + t[1];
+  }
+  let path = null;
+  for (const m of wb.matchAll(/<sheet\b[^>]*>/g)) {
+    const nm = /\bname="([^"]+)"/.exec(m[0]), rid = /\br:id="([^"]+)"/.exec(m[0]);
+    if (nm && rid && /spotlight\s*etp\s*list/i.test(unxml(nm[1]))) { path = relMap[rid[1]]; break; }
+  }
+  if (!path) throw new Error('Could not find the "Spotlight ETP List" sheet. Is this the ASX Investment Products Excel report?');
+  const sstXml = await get('xl/sharedStrings.xml') || '';
+  const ss = [...sstXml.matchAll(/<si\b[^>]*>([\s\S]*?)<\/si>/g)].map(m => unxml([...m[1].replace(/<rPh\b[\s\S]*?<\/rPh>/g, '').matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map(x => x[1]).join('')));
+  const xml = await get(path);
+  const rows = [];
+  for (const rm of xml.matchAll(/<row\b[^>]*?\br="(\d+)"[^>]*>([\s\S]*?)<\/row>/g)) {
+    const r = {n: +rm[1], c: {}};
+    for (const cm of rm[2].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
+      const ref = /\br="([A-Z]+)\d+"/.exec(cm[1]), t = /\bt="(\w+)"/.exec(cm[1]);
+      const v = /<v>([\s\S]*?)<\/v>/.exec(cm[2] || ''), is = /<is>[\s\S]*?<t\b[^>]*>([\s\S]*?)<\/t>/.exec(cm[2] || '');
+      if (!ref) continue;
+      if (v) r.c[ref[1]] = (t && t[1] === 's') ? ss[+v[1]] : unxml(v[1]);
+      else if (is) r.c[ref[1]] = unxml(is[1]);
+    }
+    rows.push(r);
+  }
+  const norm = s => String(s).replace(/\s+/g, ' ').trim();
+  const hi = rows.findIndex(r => Object.values(r.c).some(v => /^ASX Code$/i.test(norm(v))));
+  if (hi < 0) throw new Error('Could not find the header row (ASX Code)');
+  const want = {code:/^ASX Code$/i, type:/^Type$/i, name:/^Fund Name$/i, mer:/^MER/i, fum:/^FUM \(\$m\)\s*#*$/i, r1:/^1 Year Total Return/i, yld:/^Historical Distribution Yield/i};
+  const col = {};
+  for (const [c, v] of Object.entries(rows[hi].c)) for (const [k, re] of Object.entries(want)) if (!col[k] && re.test(norm(v))) col[k] = c;
+  const miss = Object.keys(want).filter(k => !col[k]);
+  if (miss.length) throw new Error('Missing columns in the sheet: ' + miss.join(', ') + ' (ASX may have changed the layout)');
+  let asOf = '', label = '';
+  for (const r of rows.slice(0, hi)) for (const v of Object.values(r.c)) {
+    const d = /Period ending:\s*[A-Za-z]+,\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/.exec(v), mi = d && MONTHS.findIndex(m => m.toLowerCase() === d[2].toLowerCase());
+    if (d && mi >= 0) asOf = `${d[3]}-${String(mi + 1).padStart(2, '0')}-${d[1].padStart(2, '0')}`;
+    const t = /Summary\s*-\s*([A-Za-z]+\s+\d{4})/.exec(v); if (t) label = t[1];
+  }
+  let cat = '', out = [];
+  for (const r of rows.slice(hi + 1)) {
+    const c = r.c, code = c[col.code] && norm(c[col.code]);
+    if (code && !c[col.type] && c[col.fum] == null) { cat = code; continue; }
+    if (!code || !/^[A-Z0-9]{2,6}$/.test(code) || !c[col.type]) continue;
+    const pct = v => { const n = num(v); return n == null ? null : n * 100; };
+    const fum = num(c[col.fum]); if (fum == null || fum < keepMin) continue;
+    out.push({code, type: norm(c[col.type]), name: norm(c[col.name] || ''), category: cat, fum, mer: num(c[col.mer]), ret1y: pct(c[col.r1]), yld: pct(c[col.yld])});
+  }
+  if (!out.length) throw new Error('No products found after filtering');
+  return {rows: out, meta: {as_of: asOf, source: 'ASX Investment Products Report' + (label ? ' - ' + label : '')}};
+}
+
+/* ---------- state in the URL hash ---------- */
+function writeHash() {
+  const p = new URLSearchParams(), q = $('#q').value.trim();
+  if (q) p.set('q', q);
+  if ($('#aum').value !== '100') p.set('aum', $('#aum').value);
+  if ($('#mer').value) p.set('mer', $('#mer').value);
+  if ($('#yld').value) p.set('yld', $('#yld').value);
+  if (selCats.size !== CATS.length) p.set('cats', [...selCats].join('|'));
+  if (selTypes.size !== TYPES.length) p.set('types', [...selTypes].join('|'));
+  if (sort.k !== 'fum' || sort.d !== -1) p.set('sort', sort.k + (sort.d < 0 ? '-' : '+'));
+  const s = p.toString();
+  try { history.replaceState(null, '', s ? '#' + s : location.pathname + location.search); } catch (e) { /* sandboxed frames may refuse */ }
+}
+function readHash() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  if (p.has('q')) $('#q').value = p.get('q');
+  if (p.has('aum')) $('#aum').value = p.get('aum');
+  if (p.has('mer')) $('#mer').value = p.get('mer');
+  if (p.has('yld')) $('#yld').value = p.get('yld');
+  if (p.has('cats')) selCats = new Set(p.get('cats').split('|').filter(c => CATS.includes(c)));
+  if (p.has('types')) selTypes = new Set(p.get('types').split('|').filter(t => TYPES.includes(t)));
+  const s = /^(\w+)([+-])$/.exec(p.get('sort') || '');
+  if (s && COLS.some(c => c.k === s[1])) sort = {k: s[1], d: s[2] === '-' ? -1 : 1};
+}
+
+/* ---------- UI building ---------- */
+function buildHead() {
+  $('#thead').innerHTML = '<tr>' + COLS.map(c =>
+    `<th scope="col" class="${c.num ? 'num' : ''}" aria-sort="${sort.k === c.k ? (sort.d < 0 ? 'descending' : 'ascending') : 'none'}"><button type="button" data-k="${c.k}">${c.l}${sort.k === c.k ? (sort.d < 0 ? ' ▼' : ' ▲') : ''}</button></th>`).join('') + '</tr>';
+}
+function buildFilters() {
+  const cc = {}, tc = {};
+  ALL.forEach(r => { cc[r.category] = (cc[r.category] || 0) + 1; tc[r.type] = (tc[r.type] || 0) + 1; });
+  CATS = Object.keys(cc).sort();
+  const order = ['ETF', 'Active', 'Complex', 'SP'];
+  TYPES = Object.keys(tc).sort((a, b) => (order.indexOf(a) + 99) % 99 - (order.indexOf(b) + 99) % 99 || a.localeCompare(b));
+  $('#catlist').innerHTML = '<div class="row2"><button type="button" data-all="1">All</button><button type="button" data-all="0">None</button></div>' +
+    CATS.map(c => `<label><input type="checkbox" data-cat="${esc(c)}"> ${esc(c)} <span class="n">${cc[c]}</span></label>`).join('');
+  $('#typelist').innerHTML = TYPES.map(t => `<label title="${esc(TYPE_HELP[t] || t)}"><input type="checkbox" data-type="${esc(t)}"> ${esc(t)} <span style="color:var(--muted)">${tc[t]}</span></label>`).join('');
+}
+function syncChecks() {
+  $('#catlist').querySelectorAll('input[data-cat]').forEach(i => i.checked = selCats.has(i.dataset.cat));
+  $('#typelist').querySelectorAll('input[data-type]').forEach(i => i.checked = selTypes.has(i.dataset.type));
+  $('#catlabel').textContent = selCats.size === CATS.length ? 'All' : selCats.size === 0 ? 'None' : selCats.size + ' of ' + CATS.length;
+}
+
+function render() {
+  const q = $('#q').value.trim().toLowerCase(), minA = num($('#aum').value) ?? 0, maxM = num($('#mer').value), minY = num($('#yld').value);
+  const rows = ALL.filter(r => r.fum >= minA && selCats.has(r.category) && selTypes.has(r.type) &&
+    (maxM == null || (r.mer != null && r.mer <= maxM)) && (minY == null || (r.yld != null && r.yld >= minY)) &&
+    (!q || (r.code + ' ' + r.name).toLowerCase().includes(q)));
+  const col = COLS.find(c => c.k === sort.k);
+  rows.sort((a, b) => {
+    const x = a[sort.k], y = b[sort.k];
+    if (x == null || y == null) return x == null && y == null ? a.code.localeCompare(b.code) : x == null ? 1 : -1;
+    const c = (col.num ? x - y : String(x).localeCompare(String(y))) * sort.d;
+    return c || a.code.localeCompare(b.code);
+  });
+  $('#tbody').innerHTML = rows.length ? rows.map(r => {
+    const cls = r.ret1y == null ? '' : r.ret1y > 0 ? 'up' : r.ret1y < 0 ? 'down' : '';
+    return `<tr><td class="code"><a href="https://www.tradingview.com/symbols/ASX-${encodeURIComponent(r.code)}/" target="_blank" rel="noopener noreferrer">${esc(r.code)}</a></td>` +
+      `<td class="name">${esc(r.name)}</td><td class="cat">${esc(r.category)}</td><td><span class="badge" title="${esc(TYPE_HELP[r.type] || r.type)}">${esc(r.type)}</span></td>` +
+      `<td class="num">${fmtAum(r.fum)}</td><td class="num">${fmtPct(r.mer)}</td><td class="num ${cls}">${fmtPct(r.ret1y, true)}</td><td class="num">${fmtPct(r.yld)}</td></tr>`;
+  }).join('') : `<tr><td colspan="${COLS.length}" class="empty">No funds match these filters.</td></tr>`;
+  const total = rows.reduce((s, r) => s + r.fum, 0);
+  $('#count').textContent = `${rows.length} of ${ALL.length} funds` + (rows.length ? ` · combined AUM ${fmtAum(total)}` : '');
+  buildHead(); syncChecks(); writeHash();
+}
+
+function setData(rows, meta) {
+  ALL = rows.map(r => ({...r})); META = meta;
+  buildFilters();
+  selCats = new Set(CATS); selTypes = new Set(TYPES);
+  readHash();
+  const d = fmtDate(meta.as_of);
+  $('#asof').textContent = (d ? `Data as of ${d} · ` : '') + `${ALL.length} ASX products ≥ A$${Math.min(...ALL.map(r => r.fum)).toFixed(0)}M`;
+  $('#src').textContent = meta.source || 'ASX Investment Products Report';
+  const w = $('#warn'), age = meta.as_of ? (Date.now() - Date.parse(meta.as_of)) / 864e5 : 0;
+  w.hidden = !(age > 100);
+  if (age > 100) w.textContent = `This data is ${Math.round(age)} days old. AUM and returns may be out of date; see "Update the data" below.`;
+  render();
+}
+
+/* ---------- events ---------- */
+['#q', '#aum', '#mer', '#yld'].forEach(s => $(s).addEventListener('input', render));
+$('#aumchips').addEventListener('click', e => { const b = e.target.closest('[data-aum]'); if (b) { $('#aum').value = b.dataset.aum; render(); } });
+$('#thead').addEventListener('click', e => {
+  const b = e.target.closest('button[data-k]'); if (!b) return;
+  const k = b.dataset.k, c = COLS.find(x => x.k === k);
+  sort = sort.k === k ? {k, d: -sort.d} : {k, d: c.num ? -1 : 1};
+  render();
+});
+$('#catlist').addEventListener('change', e => { const i = e.target.closest('input[data-cat]'); if (i) { i.checked ? selCats.add(i.dataset.cat) : selCats.delete(i.dataset.cat); render(); } });
+$('#catlist').addEventListener('click', e => { const b = e.target.closest('button[data-all]'); if (b) { selCats = b.dataset.all === '1' ? new Set(CATS) : new Set(); render(); } });
+$('#typelist').addEventListener('change', e => { const i = e.target.closest('input[data-type]'); if (i) { i.checked ? selTypes.add(i.dataset.type) : selTypes.delete(i.dataset.type); render(); } });
+$('#reset').addEventListener('click', () => {
+  $('#q').value = ''; $('#aum').value = '100'; $('#mer').value = ''; $('#yld').value = '';
+  selCats = new Set(CATS); selTypes = new Set(TYPES); sort = {k: 'fum', d: -1}; render();
+});
+document.addEventListener('click', e => document.querySelectorAll('details.dd[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; }));
+
+let imported = null;
+$('#file').addEventListener('change', async e => {
+  const f = e.target.files[0], st = $('#impstatus'); if (!f) return;
+  st.textContent = 'Reading ' + f.name + '…'; $('#cp').disabled = true;
+  try {
+    const keep = num($('#keepmin').value) ?? 100;
+    imported = /\.csv$/i.test(f.name) ? parseCSV(await f.text()) : await readXlsx(await f.arrayBuffer(), keep);
+    setData(imported.rows, imported.meta);
+    $('#cp').disabled = false;
+    st.textContent = `Loaded ${imported.rows.length} products (as of ${fmtDate(imported.meta.as_of) || 'unknown date'}). Showing the imported data now. Click Copy data.csv to keep it.`;
+  } catch (err) { imported = null; st.textContent = 'Import failed: ' + err.message; }
+});
+$('#cp').addEventListener('click', async () => {
+  if (!imported) return;
+  try { await navigator.clipboard.writeText(toCSV(imported.rows, imported.meta)); $('#impstatus').textContent = 'data.csv copied to the clipboard.'; }
+  catch (e) { $('#impstatus').textContent = 'Copy was blocked by the browser. Try Download instead.'; }
+});
+
+/* ---------- boot ---------- */
+buildHead();
+fetch('data.csv', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error('data.csv returned HTTP ' + r.status); return r.text(); })
+  .then(t => { const d = parseCSV(t); setData(d.rows, d.meta); })
+  .catch(err => {
+    $('#asof').textContent = 'Could not load data.csv (' + err.message + '). If you opened this file directly from disk, use the "Update the data" box below to load a CSV, or serve the folder over HTTP.';
+    $('#imp').open = true;
+  });
+})();
+</script>
+</body>
+</html>

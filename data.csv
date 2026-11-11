@@ -1,0 +1,280 @@
+# as_of=2026-10-30; source=ASX Investment Products Report - October 2026
+code,type,name,category,fum_m,mer,ret1y,yield
+VAS,ETF,Vanguard Australian Shares Index ETF,Equity - Australia,26993,0.07,3.93,3.13
+VGS,ETF,Vanguard MSCI Index International Shares ETF,Equity - Global,18630,0.18,4.64,1.23
+IVV,ETF,iShares S&P 500 ETF,Equity - Global,14846,0.04,4.67,1.03
+A200,ETF,Betashares Australia 200 ETF,Equity - Australia,11430,0.04,5.06,3.36
+IOZ,ETF,iShares Core S&P/ASX 200 ETF,Equity - Australia,9775,0.05,4.73,3.44
+QUAL,ETF,VanEck MSCI International Quality ETF,Equity - Global Sectors,9103,0.4,4.33,3.45
+NDQ,ETF,Betashares NASDAQ 100 ETF,Equity - Global,9036,0.48,3.28,1.51
+VHY,ETF,Vanguard Australian Shares High Yield ETF,Equity - Australia Sectors,8380,0.25,13.94,3.6
+VGAD,ETF,Vanguard MSCI Index International Shares (Hedged) ETF,Equity - Global,7907,0.21,13.07,2.83
+VTS,ETF,Vanguard US Total Market Shares Index ETF,Equity - Global,7284,0.03,5.02,0.9
+DACE,Active,Dimensional Australian Core Equity Trust – Active ETF,Equity - Australia Strategy,7111,0.28,3.45,3.17
+STW,ETF,SPDR S&P/ASX 200 ETF,Equity - Australia,6648,0.05,4.75,3.8
+VEU,ETF,Vanguard All-World ex US Shares Index ETF,Equity - Global,6319,0.04,6.1,2.12
+IOO,ETF,iShares Global 100 ETF,Equity - Global,5938,0.4,4.48,1.2
+DGCE,Active,Dimensional Global Core Equity Trust (Unhedged Class) – Active ETF,Equity - Global Strategy,5713,0.3,7.82,1.3
+BGBL,ETF,Betashares Global Shares ETF,Equity - Global,5664,0.08,4.97,1.17
+GOLD,SP,Global X Physical Gold,Commodity,5447,0.4,-7.39,0
+AAA,ETF,Betashares Australian High Interest Cash ETF,Cash,5172,0.18,4.24,4.2
+VBND,ETF,Vanguard Global Aggregate Bond Index (Hedged) ETF,Fixed Income - Global,5008,0.2,-0.52,9.55
+DFGH,Active,Dimensional Global Core Equity Trust (AUD Hedged Class) – Active ETF,Equity - Global Strategy,4304,0.3,16.48,5.94
+IHVV,ETF,iShares S&P 500 AUD Hedged ETF,Equity - Global,4274,0.1,11.65,4.03
+VDHG,ETF,Vanguard Diversified High Growth Index ETF,Mixed Asset,4149,0.27,5.61,3.48
+SUBD,ETF,VanEck Australian Subordinated Debt ETF,Fixed Income - Australia Dollar,4064,0.29,4.99,5.52
+VAF,ETF,Vanguard Australian Fixed Interest Index ETF,Fixed Income - Australia Dollar,3951,0.1,0.2,3.48
+ETHI,ETF,Betashares Global Sustainability Leaders ETF,Equity - Global Sectors,3835,0.59,4.59,1.76
+IAF,ETF,iShares Core Composite Bond ETF,Fixed Income - Australia Dollar,3735,0.1,0.33,3.2
+V1AC,Active,Vinva Global Alpha Fund - Active ETF,Equity - Global Strategy,3705,1.35,-6.85,6.86
+MVW,ETF,VanEck Australian Equal Weight ETF,Equity - Australia,3341,0.35,2.85,3.34
+HYGG,Active,Hyperion Global Growth Companies Fund - Active ETF,Equity - Global Strategy,3137,0.7,-15.52,12.04
+HGBL,ETF,Betashares Global Shares Currency Hedged ETF,Equity - Global,3030,0.11,13.11,1.21
+VAP,ETF,Vanguard Australian Property Securities Index ETF,Property - Australia,2825,0.23,-13.55,3.23
+QHAL,ETF,VanEck MSCI International Quality (AUD Hedged) ETF,Equity - Global Sectors,2685,0.43,12.37,3.35
+QPON,ETF,Betashares Australian Bank Senior Floating Rate Bond ETF,Fixed Income - Australia Dollar,2488,0.22,4.7,4.5
+HBRD,Active,BetaShares Australian Hybrids Active ETF,Fixed Income - Australia Dollar,2470,0.55,4.44,5.45
+IFRA,ETF,VanEck FTSE Global Infrastructure (Hedged) ETF,Equity - Infrastructure,2333,0.2,13.38,2.98
+PMGOLD,SP,Perth Mint Gold,Commodity,2328,0.15,-7.05,0
+RCAP,Active,Resolution Capital Global Property Securities Fund - Active ETF,Property - Global,2175,0.8,8.05,1.92
+GLIN,ETF,iShares Core FTSE Global Infrastructure (AUD Hedged) ETF,Equity - Infrastructure,2090,0.15,13.57,6.16
+VGE,ETF,Vanguard FTSE Emerging Markets Shares ETF,Equity - Emerging Markets,2023,0.48,-4.43,1.56
+PGA1,Complex,Plato Global Alpha Fund Complex ETF,Equity - Global Strategy,2017,0.85,10.99,0
+IWLD,ETF,iShares Core MSCI World ex Australia ESG ETF,Equity - Global,1931,0.09,4.38,1.35
+CRED,ETF,Betashares Australian Investment Grade Bond ETF,Fixed Income - Australia Dollar,1871,0.25,-0.65,5.62
+HACK,ETF,Betashares Global Cybersecurity ETF,Equity - Global Sectors,1724,0.67,26.97,3.24
+DHHF,ETF,Betashares Diversified All Growth ETF,Mixed Asset,1694,0.19,4.98,2.07
+IEM,ETF,iShares MSCI Emerging Markets ETF,Equity - Emerging Markets,1675,0.69,5.34,1.53
+IXJ,ETF,iShares Global Healthcare ETF,Equity - Global Sectors,1666,0.41,16.43,1.44
+ILB,ETF,iShares Government Inflation ETF,Fixed Income - Australia Dollar,1660,0.18,0.95,1.59
+IAA,ETF,iShares Asia 50 ETF,Equity - Asia,1631,0.29,22.57,1.64
+AQLT,ETF,Betashares Australian Quality ETF,Equity - Australia Sectors,1627,0.35,10.5,3.94
+VDGR,ETF,Vanguard Diversified Growth Index ETF,Mixed Asset,1620,0.27,4.47,4.29
+DAVA,Active,Dimensional Australian Value Trust - Active ETF,Equity - Australia Strategy,1614,0.34,13.22,6.53
+OZBD,ETF,Betashares Australian Composite Bond ETF,Fixed Income - Australia Dollar,1602,0.19,-0.09,4.68
+FANG,ETF,Global X FANG+ ETF,Equity - Global Sectors,1601,0.35,-4.33,6.83
+VESG,ETF,Vanguard Ethically Conscious International Shares Index ETF,Equity - Global Sectors,1566,0.18,4.72,1.34
+QSML,ETF,VanEck MSCI International Small Companies Quality ETF,Equity - Global Sectors,1540,0.59,-2.53,0.42
+QUS,ETF,Betashares S&P 500 Equal Weight ETF,Equity - Global,1535,0.29,10.64,2.53
+IJP,ETF,iShares MSCI Japan ETF,Equity - Asia,1534,0.5,8.57,5.13
+VVLU,Active,Vanguard Global Value Equity Active ETF,Equity - Global Strategy,1516,0.28,20.98,11.47
+QOZ,ETF,Betashares FTSE RAFI Australia 200 ETF,Equity - Australia,1481,0.4,13.57,3.76
+CIIH,Active,CB Global Infrastructure Income (Hedged) Active ETF,Equity - Global Strategy,1481,1.02,13.39,17.36
+VGB,ETF,Vanguard Australian Government Bond Index ETF,Fixed Income - Australia Dollar,1471,0.16,-0.06,3.31
+FLOT,ETF,VanEck Australian Floating Rate ETF,Fixed Income - Australia Dollar,1438,0.22,4.5,4.64
+GDX,ETF,VanEck Gold Miners ETF,Equity - Global Sectors,1362,0.53,6.74,18.17
+IEU,ETF,iShares Europe ETF,Equity - Global,1320,0.59,3.92,8.67
+MQAE,Active,Macquarie Core Australian Equity Active ETF,Equity - Australia Strategy,1319,0.03,2.37,2.71
+DGVA,Active,Dimensional Global Value Trust - Active ETF,Equity - Global Strategy,1279,0.4,21.58,3.66
+BILL,ETF,iShares Core Cash ETF,Cash,1247,0.07,4.25,4.27
+ASIA,ETF,Betashares Asia Technology Tigers ETF,Equity - Asia,1211,0.67,22.8,2.09
+MQSD,Active,Macquarie Subordinated Debt Active ETF,Fixed Income - Australia Dollar,1184,0.29,4.97,5.57
+VSO,ETF,Vanguard MSCI Australian Small Companies Index ETF,Equity - Australia Small/Mid Cap,1172,0.3,-4.62,4.95
+ETPMAG,SP,Global X Physical Silver,Commodity,1172,0.49,-2.47,0
+AGVT,ETF,Betashares Australian Government Bond ETF,Fixed Income - Australia Dollar,1156,0.22,-0.86,4.44
+QAU,ETF,Betashares Gold Bullion ETF (Currency Hedged),Commodity,1127,0.59,-1.18,5.53
+IHWL,ETF,iShares Core MSCI World ex Australia ESG (AUD Hedged) ETF,Equity - Global,1106,0.12,12.58,5.55
+QLTY,ETF,Betashares Global Quality Leaders ETF,Equity - Global Sectors,1054,0.35,4.39,3.35
+CIVH,Active,CB GLBL Infrastructure Value (Hedged) Active ETF,Equity - Global Strategy,1052,1.02,10.61,19.98
+FAIR,ETF,Betashares Australian Sustainability Leaders ETF,Equity - Australia Sectors,1041,0.49,-9.13,3.06
+VISM,ETF,Vanguard MSCI International Small Companies Index ETF,Equity - Global Sectors,1020,0.32,9.66,8.11
+NNUK,Active,Nanuk New World Fund Active ETF,Equity - Global Strategy,967,1.1,15.05,10.07
+SEMI,ETF,Global X Semiconductor ETF,Equity - Global Sectors,953,0.45,50.76,8.55
+VDBA,ETF,Vanguard Diversified Balanced Index ETF,Mixed Asset,948,0.27,3.1,5.45
+HNDQ,ETF,Betashares NASDAQ 100 ETF - Currency Hedged ETF,Equity - Global,903,0.51,10.19,2.17
+IHOO,ETF,iShares Global 100 AUD Hedged ETF,Equity - Global,901,0.43,12.34,4.4
+BNDS,Active,BetaShares Western Asset Aus Bond Active ETF,Fixed Income - Australia Dollar,878,0.42,0.36,4.74
+MOAT,ETF,VanEck Morningstar Wide Moat ETF,Equity - Global Sectors,877,0.49,4.82,9.55
+VIF,ETF,Vanguard International Fixed Interest Index (Hedged) ETF,Fixed Income - Global,873,0.2,-0.94,9.21
+MVA,ETF,VanEck Australian Property ETF,Property - Australia,866,0.35,-10.14,5.91
+WXOZ,ETF,SPDR S&P World ex Australia Carbon Aware ETF,Equity - Global,852,0.07,2.18,5.98
+BSUB,ETF,Australian Major Bank Subordinated Debt ETF,Fixed Income - Australia Dollar,850,0.29,4.91,4.98
+IJR,ETF,iShares S&P Small-Cap ETF,Equity - Global,850,0.07,13.71,1.17
+LPGD,Active,Loftus Peak Global Disruption Active ETF,Equity - Global Strategy,844,1.2,1.69,8.75
+REIT,ETF,VanEck FTSE International Property (Hedged) ETF,Property - Global,811,0.2,7.54,4.74
+ILC,ETF,iShares S&P/ASX 20 ETF,Equity - Australia,805,0.24,11.56,3.71
+WBND,ETF,Betashares Global Aggregate Bond Currency Hedged ETF,Fixed Income - Global,803,0.19,0.89,3.98
+AASF,Active,Airlie Australian Share Fund - Active ETF,Equity - Australia Strategy,799,0.78,5.77,6.59
+WIRE,ETF,Global X Copper Miners ETF,Equity - Global Sectors,797,0.65,15.38,3.42
+EMKT,ETF,Vaneck MSCI Multifactor Emerging Markets Equity ETF,Equity - Emerging Markets,797,0.69,19.2,13.91
+SYI,ETF,SPDR MSCI Australia Select High Dividend Yield ETF,Equity - Australia Sectors,791,0.2,20.17,6.95
+MVR,ETF,VanEck Australian Resources ETF,Equity - Australia Sectors,783,0.35,11.98,2.64
+GXLD,ETF,Global X Gold Bullion ETF,Commodity,774,0.15,-6.98,0
+ISEC,ETF,iShares Enhanced Cash ETF,Cash,754,0.12,4.31,4.46
+VAE,ETF,Vanguard FTSE Asia Ex-Japan Shares Index ETF,Equity - Asia,751,0.4,5.62,1.47
+GLPR,ETF,iShares Core FTSE Global Property Ex Australia (AUD Hedged) ETF,Property - Global,737,0.15,7.99,5.23
+HETH,ETF,Betashares Global Sustainability Leaders ETF - Currency Hedged,Equity - Global Sectors,736,0.62,13.15,2.03
+MMKT,Active,Betashares Australian Cash Plus Active ETF,Cash,722,0.18,4.51,4.36
+SFY,ETF,SPDR S&P/ASX 50 ETF,Equity - Australia,722,0.2,7.38,3.91
+CUIV,Active,CB GLBL Infrastructure Value Active ETF,Equity - Global Strategy,718,0.97,0.62,15.75
+YMAX,Complex,Betashares Australian Top 20 Equities Yield Maximiser Complex ETF,Equity - Australia Strategy,716,0.64,,7.89
+DGSM,Active,Dimensional Global Small Company - Active ETF,Equity - Global Strategy,710,0.55,10.01,3.93
+VBLD,ETF,Vanguard Global Infrastructure Index ETF,Equity - Infrastructure,704,0.47,6.84,2.13
+VACF,ETF,Vanguard Australian Corporate Fixed Interest Index ETF,Fixed Income - Australia Dollar,702,0.2,1.51,4
+BHYB,ETF,Betashares Australian Major Bank Hybrids Index ETF,Fixed Income - Australia Dollar,685,0.35,5.73,4.94
+FRAR,Active,Franklin Australian Absolute Return Bond Fund – Active ETF,Fixed Income - Australia Dollar,675,0.5,0.71,3.8
+EX20,ETF,Betashares Australian Ex-20 Portfolio Diversifier ETF,Equity - Australia Small/Mid Cap,674,0.25,-5.59,2.83
+VETH,ETF,Vanguard Ethically Conscious Australian Shares ETF,Equity - Australia Sectors,657,0.16,-2.44,2.83
+VLUE,ETF,VanEck MSCI International Value ETF,Equity - Global Sectors,654,0.4,39.21,17.63
+IESG,ETF,iShares Core MSCI Australia ESG ETF,Equity - Australia Sectors,651,0.09,-0.08,2.54
+DIVI,Active,Ausbil Active Dividend Income Fund - Active ETF,Equity - Australia Strategy,630,0.85,8.86,5.37
+VEQ,ETF,Vanguard FTSE Europe Shares ETF,Equity - Global,623,0.35,3.54,2.24
+IVE,ETF,iShares MSCI EAFE ETF,Equity - Global,612,0.32,4.88,3.63
+FSML,Active,Firetrail Australian Small Companies Fund – Active ETF,Equity - Australia Strategy,608,0.85,-10.36,6.3
+GLOB,Active,Barrow Hanley Global Share Active ETF,Equity - Global Strategy,602,0.99,11.95,16.43
+FEIF,Active,Western Asset Enhanced Income Fund - Active ETF,Fixed Income - Global,580,0.5,,3.91
+GEAR,Complex,Betashares Geared Australian Equities Complex ETF,Equity - Australia Strategy,570,0.78,2.37,1.79
+ATEC,ETF,Betashares S&P/ASX Australian Technology ETF,Equity - Australia Sectors,558,0.48,-28.55,1.94
+QGFH,Active,Quay Global Real Estate Fund (AUD Hedged) Active ETF,Property - Global,546,0.92,,2.91
+VDAL,ETF,Vanguard Diversified All Growth Index ETF,Mixed Asset,537,0.27,6.07,2.56
+ICOR,ETF,iShares Core Corporate Bond ETF,Fixed Income - Australia Dollar,525,0.15,1.59,4.61
+IACT,Active,Ishares U.S. Factor Rotation Active ETF,Equity - Global Strategy,521,0.45,4.66,0.56
+XGOV,ETF,VanEck 10+ Year Australian Government Bond ETF,Fixed Income - Australia Dollar,520,0.22,-1.48,4.3
+DJRE,ETF,SPDR Dow Jones Global Real Estate ESG Tilted ETF,Property - Global,516,0.2,2.61,2.81
+ACDC,ETF,Global X Battery Tech & Lithium ETF,Equity - Global Sectors,502,0.69,-16.15,16.39
+MVE,ETF,VanEck S&P/ASX MidCap ETF,Equity - Australia Small/Mid Cap,502,0.45,-2.68,2.64
+E200,ETF,SPDR S&P/ASX 200 ESG ETF,Equity - Australia Sectors,498,0.05,6.04,4.39
+IJH,ETF,iShares S&P Midcap ETF,Equity - Global,490,0.07,7.92,1.23
+ESTX,ETF,Global X EURO STOXX 50 ETF,Equity - Global,478,0.35,-0.63,7.6
+L1IF,Active,L1 Capital International (Unhedged) Active ETF,Equity - Global Strategy,476,1.2,-8.61,0.59
+AESG,ETF,iShares Global Aggregate Bond ESG (AUD Hedged) ETF,Fixed Income - Global,476,0.19,0.29,3.12
+QGRU,Active,Quay Global Real Estate Fund (Unhedged) Active ETF,Property - Global,469,0.88,-4.95,3.3
+PGI2,Active,Plato Global Shares Income Fund – Active ETF,Equity - Global Strategy,468,0.85,,2.98
+QMIX,ETF,SPDR MSCI World Quality Mix ETF,Equity - Global Sectors,466,0.18,7.45,4.38
+USTB,ETF,Global X US Treasury Bond ETF (Currency Hedged),Fixed Income - Global,466,0.19,-0.3,7.19
+MICH,Active,Magellan Infra Fund (Currency Hedged) - Active ETF,Equity - Infrastructure,459,1.05,10.81,12.95
+SLF,ETF,SPDR S&P/ASX 200 Listed Property ETF,Property - Australia,453,0.16,-14.25,5.28
+GGUS,Complex,Betashares Geared US Equities Currency Hedged Complex ETF,Equity - Global Strategy,439,0.8,18.99,0
+RARI,ETF,Russell Investments Australian Responsible Investment ETF,Equity - Australia Sectors,437,0.45,-2.16,5.72
+F100,ETF,Betashares FTSE 100 ETF,Equity - Global,435,0.45,7.31,3.4
+IZZ,ETF,iShares China Large-Cap ETF,Equity - Asia,434,0.6,-21.75,1.98
+GLDN,ETF,iShares Physical Gold ETF,Commodity,432,0.18,-7.1,0
+WDIV,ETF,SPDR S&P Global Dividend ETF,Equity - Global Sectors,430,0.35,10.8,10.37
+QRE,ETF,Betashares Resources Sector ETF,Equity - Australia Sectors,430,0.34,20.05,2.36
+GHHF,Complex,Betashares Wealthbuilder All Gr Geared Complex ETF,Equity - Global Strategy,422,0.35,6.36,1.9
+WXHG,ETF,SPDR S&P World ex Australia Carbon Aware (Hedged) ETF,Equity - Global,416,0.1,10.64,6.98
+SPY,ETF,SPDR S&P 500 ETF,Equity - Global,409,0.09,4.84,0.84
+MSTR,Active,Morningstar International Shares Active ETF,Equity - Global Strategy,407,0.39,17.35,22.61
+ASUS,Active,Ausbil Active Sustainable Equity Fund - Active ETF,Equity - Australia Strategy,404,1,,1.37
+IHD,ETF,iShares S&P/ASX Dividend Opportunities ESG Screened ETF,Equity - Australia Sectors,403,0.23,7.53,4.19
+PLUS,ETF,VanEck Australian Corporate Bond Plus ETF,Fixed Income - Australia Dollar,403,0.32,0.56,4.63
+R3AL,Active,Martin Currie Real Income Fund – Active ETF,Equity - Australia Strategy,398,0.85,-6.25,5.23
+AGX1,Active,Antipodes Global Value Active ETF,Equity - Global Strategy,389,1.1,3.41,12.58
+WCMQ,Active,WCM Quality Global Growth Fund – Active ETF,Equity - Global Strategy,375,1.25,-3.07,8.05
+FGSE,Active,Franklin Global Systematic Equity FD - Active ETF,Equity - Global Strategy,374,0.4,,0.65
+RCB,ETF,Russell Investments Australian Select Corporate Bond ETF,Fixed Income - Australia Dollar,368,0.28,1.16,4.3
+SMLL,ETF,Betashares Australian Small Companies Select ETF,Equity - Australia Small/Mid Cap,366,0.39,-0.88,3
+HCRD,ETF,Betashares Interest Rate Hedged Australian Grade Corporate Bond ETF,Fixed Income - Australia Dollar,364,0.29,3.08,5.3
+EMXC,ETF,iShares MSCI Emerging Markets ex China ETF,Equity - Emerging Markets,357,0.25,18.75,1.47
+IGB,ETF,iShares Treasury ETF,Fixed Income - Australia Dollar,357,0.18,0,2.64
+RDV,ETF,Russell Investments High Dividend Australian Shares ETF,Equity - Australia Sectors,356,0.34,6.85,3.94
+MAET,Complex,Munro Global Growth Fund Complex ETF,Equity - Global Strategy,355,1.35,-11.92,23.64
+HJPN,ETF,Betashares Japan Currency Hedged ETF,Equity - Asia,353,0.56,26.53,6.61
+ALTB,ETF,iShares 15+ Year Australian Government Bond ETF,Fixed Income - Australia Dollar,350,0.15,-3.74,3.31
+DIFF,Active,Perpetual Diversified Income Active ETF,Fixed Income - Australia Dollar,347,0.59,4.93,5.31
+IHCB,ETF,iShares Core Global Corporate Bond (AUD Hedged) ETF,Fixed Income - Global,344,0.26,-0.13,4.5
+TECH,ETF,Global X Morningstar Global Technology ETF,Equity - Global Sectors,341,0.45,17.31,3.13
+UMAX,Complex,Betashares S&P 500 Yield Maximiser Complex ETF,Equity - Global Strategy,331,0.79,5.2,5.58
+HQUS,ETF,Betashares S&P 500 Equal Weight Currency Hedged ETF,Equity - Global,325,0.32,18.07,2.57
+VLC,ETF,Vanguard MSCI Australian Large Companies Index ETF,Equity - Australia,314,0.2,9.63,3.32
+URNM,ETF,Betashares Global Uranium ETF,Equity - Global Sectors,306,0.69,-30.39,2.94
+MVB,ETF,VanEck Australian Banks ETF,Equity - Australia Sectors,305,0.28,6.52,4.21
+VBTC,ETF,VanEck Bitcoin ETF,Crypto Assets,304,0.45,-33.99,0
+GHIF,Active,Ausbil Global Essential Infrastructure Fund (Hedged) – Active ETF,Equity - Infrastructure,300,1,12.83,4.41
+FUEL,ETF,Betashares Global Energy Companies Currency Hedged ETF,Equity - Global Sectors,297,0.57,57.05,3.75
+OPPT,Active,Magellan Global Opportunities Fund - Active ETF,Equity - Global Strategy,296,0.75,-1.62,3.48
+VDCO,ETF,Vanguard Diversified Conservative Index ETF,Mixed Asset,295,0.27,2.19,5.72
+EBND,Active,VanEck Vectors Emerging Income Opportunities Active ETF,Fixed Income - Global,294,0.95,0.05,6.36
+RGB,ETF,Russell Investments Australian Government Bond ETF,Fixed Income - Australia Dollar,294,0.24,-1.2,2.62
+ROBO,ETF,Global X ROBO Global Robotics & Automation ETF,Equity - Global Sectors,294,0.69,2.54,11.02
+HVST,Active,BetaShares Aus Dividend Harvester Active ETF,Equity - Australia Strategy,279,0.72,2.93,5.52
+OZR,ETF,SPDR S&P/ASX 200 Resources ETF,Equity - Australia Sectors,277,0.34,20.72,2.44
+GCQF,Complex,GCQ Global Equities Complex ETF,Equity - Global Strategy,273,1.25,-18.13,1.16
+MTUM,ETF,Betashares Australian Momentum ETF,Equity - Australia Sectors,272,0.35,-7.34,2.26
+IYLD,ETF,iShares Yield Plus ETF,Fixed Income - Australia Dollar,271,0.12,3.37,4.65
+GXAI,ETF,Global X Artificial Intelligence ETF,Equity - Global Sectors,269,0.57,7.1,5.03
+RBTZ,ETF,Betashares Global Robotics and Artificial Intelligence ETF,Equity - Global Sectors,268,0.57,-17.94,0.06
+NUGG,ETF,VanEck Gold Bullion ETF,Commodity,266,0.25,-7.4,0
+XALG,Active,Alphinity Global Equity Fund - Active ETF,Equity - Global Strategy,262,0.75,-6.37,2.46
+QHSM,ETF,VanEck MSCI International Small Companies Quality (AUD Hedged) ETF,Equity - Global Sectors,261,0.62,4.74,0.39
+GRNV,ETF,VanEck MSCI Australian Sustainable Equity ETF,Equity - Australia Sectors,261,0.35,-2.27,3.54
+ESGI,ETF,Vaneck MSCI International Sustainable Equity ETF,Equity - Global,255,0.55,5.03,2.71
+IHHY,ETF,iShares Global High Yield Bond (AUD Hedged) ETF,Fixed Income - Global,252,0.56,1.67,5.95
+PAXX,Complex,Platinum Asia Fund Complex ETF,Equity - Global Strategy,252,1.1,-0.39,1
+SFIF,Active,Seed Financial Income Fund Active ETF,Fixed Income - Australia Dollar,250,0.55,4.38,5.03
+NNWH,Active,Nanuk New World Fund (Currency Hedged) Active EFT,Equity - Global Strategy,246,1.1,25.09,16.94
+MQEG,Active,Macquarie Core Global Equity Active ETF,Equity - Global Strategy,244,0.08,5.71,1.53
+DFND,ETF,VanEck Global Defence ETF,Equity - Global Sectors,241,0.65,-13.68,3.69
+GHLD,ETF,Global X Gold Bullion (Currency Hedged) ETF,Commodity,233,0.35,-1.71,0
+MCCL,Active,Munro Climate Change Leaders Fund Active ETF,Equity - Global Strategy,232,0.9,2.99,18.43
+LHGG,Active,Lakehouse Global Growth Fund Active ETF,Equity - Global Strategy,230,1.3,-22.5,3.63
+MNRS,ETF,Betashares Global Gold Miners ETF - Currency Hedged,Equity - Global Sectors,230,0.57,10.71,8.89
+ARMR,ETF,Betashares Global Defence ETF,Equity - Global Sectors,229,0.55,-8.82,2.17
+GSUS,Active,Candriam Sustainable Global Equity Fund – Active ETF,Equity - Global Strategy,217,0.55,5.89,3.22
+GTUM,Active,Betashares Global Momentum ETF,Equity - Global Strategy,213,0.35,,1.54
+LEND,ETF,VanEck Global Listed Private Credit (AUD Hedged) ETF,Equity - Global Sectors,212,0.65,-4.44,12.27
+GBND,ETF,Betashares Sustainability leaders Diversified Bond ETF - Currency Hedged,Fixed Income - Global,208,0.39,-1.72,4.34
+MIDS,Active,Antipodes Global SMID Active ETF,Equity - Global Strategy,206,1.2,13.55,0.46
+BEMG,Complex,Betashares MSCI Emerging Markets Complex ETF,Equity - Emerging Markets,200,0.35,6.01,0
+V500,ETF,Vanguard S&P 500 US Shares Index ETF,Equity - Global,199,0.07,,0.43
+BANK,ETF,Global X Australian Bank Credit ETF,Fixed Income - Australia Dollar,190,0.25,4.05,5.2
+DRUG,ETF,Betashares Global Healthcare ETF - Currency Hedged,Equity - Global Sectors,190,0.57,23.67,3.58
+BNKS,ETF,Betashares Global Banks ETF - Currency Hedged,Equity - Global Sectors,187,0.57,27.14,5.67
+AINF,ETF,Global X AI Infrastructure ETF,Equity - Global Sectors,185,0.57,4.51,3.95
+VCF,ETF,Vanguard International Credit Securities Index (Hedged) ETF,Fixed Income - Global,175,0.3,0.04,9.93
+JEME,Active,JPMorgan EM Research Enhanced IDX EQTY Active ETF,Equity - Emerging Markets,174,0.35,9.38,0
+HVLU,ETF,VanEck MSCI International Value (AUD Hedged) ETF,Equity - Global Sectors,172,0.43,51.96,17.14
+MVS,ETF,VanEck Small Companies Masters ETF,Equity - Australia Small/Mid Cap,171,0.49,-11.6,3.01
+EXUS,ETF,Betashares Global Shares EX US ETF,Equity - Global,171,0.14,6.51,1.1
+FSUB,ETF,Vaneck Australian Fixed Rate Subordinated Debt ETF,Fixed Income - Australia Dollar,169,0.29,,5.21
+IKO,ETF,iShares MSCI South Korea ETF,Equity - Asia,168,0.45,52.43,6.34
+NDIA,ETF,Global X India Nifty 50 ETF,Equity - Asia,167,0.69,-20.93,2.21
+BCOM,Complex,Global X Bloomberg Commodity Complex ETF,Commodity,166,0.66,19.5,5.51
+BBOZ,Complex,Betashares Australian Equities Strong Bear Complex ETF,Equity - Australia Strategy,162,1.29,-1.13,0
+IIND,ETF,Betashares India Quality ETF,Equity - Asia,157,0.8,-20.47,0.43
+JEPI,Active,JPMorgan Equity Premium Income Active ETF,Equity - Global Strategy,153,0.4,1.12,6.94
+LPHD,Active,Loftus Peak Global Disruption Hedged Active ETF,Equity - Global Strategy,151,1.2,9.75,5.91
+LNYN,Active,Lanyon Investment Fund Active ETF,Equity - Global Strategy,149,1,4.33,1.01
+WDMF,ETF,iShares Edge MSCI World Multifactor ETF,Equity - Global Sectors,148,0.35,6.76,3.44
+CRYP,ETF,Betashares Crypto Innovators ETF,Equity - Global Sectors,148,0.67,-34.82,0
+AUMF,ETF,iShares Edge MSCI Australia Multifactor ETF,Equity - Australia Sectors,147,0.3,0.72,2.82
+PWER,Active,First Sentier Global Listed Infrastructure Fund (Hedged) Active ETF,Equity - Infrastructure,147,0.95,,0
+GOVT,ETF,SPDR S&P/ASX Australian Government Bond ETF,Fixed Income - Australia Dollar,146,0.1,0.04,3.09
+MCGG,Active,Munro Concentrated Global Growth Active ETF,Equity - Global Strategy,145,0.7,-9.63,11.54
+XARO,Complex,Ardea Real Outcome Bond Complex ETF,Fixed Income - Global,144,0.5,3.63,1.48
+FEMX,Active,Fidelity Global Emerging Markets Active ETF,Equity - Emerging Markets,143,0.99,1.12,10.3
+HQLT,ETF,Betashares Global Quality Leaders ETF - Currency Hedged,Equity - Global Sectors,139,0.38,10.72,4.11
+FHNG,ETF,FANG+ (Currency Hedged) ETF,Equity - Global Sectors,138,0.38,2.34,9.87
+IXI,ETF,iShares Global Consumer Staples ETF,Equity - Global Sectors,138,0.41,6.61,1.96
+LEVR,Complex,First Sentier Geared Australian Share Complex ETF,Equity - Australia Strategy,136,2.38,-6.64,0.59
+MOGL,Active,Montaka Global Fund - Active ETF,Equity - Global Strategy,136,1.32,-12.78,5.95
+DAOR,Active,Aoris Int Fund (Class D) (Hedged) Active ETF,Equity - Global Strategy,135,1.15,6.85,4.39
+B1SM,Active,Bell Global Emerging Companies Class A Active ETF,Equity - Emerging Markets,133,1.34,,6.69
+BBUS,Active,Betashares US Equities Strong Bear Currency Hedged Complex ETF,Equity - Global Strategy,131,1.32,-18.66,0
+HYLD,ETF,Betashares S&P Australian Shares High Yield ETF,Equity - Australia Sectors,131,0.25,14.03,4.26
+AYLD,ETF,Global X S&P/ASX 200 Covered Call ETF,Equity - Australia Sectors,130,0.6,10.05,7.37
+BAOR,Active,Aoris Int Fund (Class B) (Unhedged) Active ETF,Equity - Global Strategy,128,1.1,-0.41,0
+ROYL,ETF,Betashares Global Royalties ETF,Equity - Global Sectors,125,0.69,15.86,5.41
+GARP,ETF,Global X S&P World ex Australia GARP ETF,Equity - Global Sectors,124,0.3,0.02,6.07
+OOO,Complex,Betashares Crude Crude Oil Index Currncy Hdg Complex ETF,Commodity,123,1.29,123.36,2.93
+ISO,ETF,iShares S&P/ASX Small Ordinaries ETF,Equity - Australia Small/Mid Cap,123,0.55,-14.45,4.65
+XMET,ETF,Betashares Energy Transition Metals ETF,Equity - Global Sectors,121,0.69,2.6,4.47
+MONY,Active,Vaneck Cash Plus Active ETF,Cash,121,0.15,,3.33
+ATOM,ETF,Global X Uranium ETF,Equity - Global Sectors,119,0.69,-40.41,10.7
+ETPMPM,SP,Global X Physical Precious Metals Basket,Commodity,118,0.44,-10.54,0
+INCM,ETF,Betashares S&P Global High Dividend Aristocrats ETF,Equity - Global Sectors,118,0.39,13.46,4.84
+XX20,Active,First Sentier ex-20 Australian Share Fund Active ETF,Equity - Australia Strategy,118,0.75,,1.53
+DTEC,ETF,Global X Defence Tech ETF,Equity - Global Sectors,117,0.5,-10.49,3.04
+DZZF,ETF,Betashares Ethical High Growth ETF,Mixed Asset,116,0.39,0.43,2.6
+ICME,Active,iShares Credit Income Active ETF,Fixed Income - Australia Dollar,110,0.29,3.89,5.74
+TBIL,ETF,VanEck 1-3 Month US Treasury Bond ETF,Fixed Income - Global,110,0.22,-3.69,3.57
+JPEQ,Active,JPMorgan US 100Q Equity Premium Income Active ETF (Hedged),Equity - Global Strategy,109,0.4,1.31,10.81
+GSCF,Active,Ausbil Global SmallCap Fund – Active ETF,Equity - Global Strategy,108,1.2,-0.09,3.42
+MQDB,Active,Macquarie Dynamic Bond Active ETF,Fixed Income - Global,108,0.61,0.21,3.72
+AVSV,Active,Avantis Global Small Cap Value Active ETF,Equity - Global Strategy,108,0.49,20.46,0
+MQIO,Active,Macquarie Income Opportunities Active ETF,Fixed Income - Global,106,0.49,3.31,4.58
+ECRD,Complex,Betashares Enhanced Credit (Geared) Complex ETF,Fixed Income - Australia Dollar,104,0.29,3.1,7.1
+U100,ETF,Global X US 100 ETF,Equity - Global,104,0.18,1.07,12.04
+GGBL,Complex,Betashares WealthBuilder Global Geared Complex ETF,Equity - Global Strategy,103,0.35,4.34,0.66
+ZYAU,ETF,Global X S&P/ASX 200 High Dividend ETF,Equity - Australia Sectors,100,0.24,,4.51
+UTIP,ETF,Betashares Inflation-Protected U.S. Treasury Bond Currency Hedged ETF,Fixed Income - Global,100,0.22,0.15,3.63
