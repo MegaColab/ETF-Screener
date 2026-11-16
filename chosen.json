@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T21:22:39.576Z",
+ "updated": "2026-11-16T21:22:56.631Z",
  "lists": {
   "core": {
    "REIT": {
@@ -214,6 +214,20 @@
      "mer": 0.65,
      "ret1y": 15.38,
      "yld": 3.42,
+     "as_of": "2026-10-30"
+    }
+   },
+   "URNM": {
+    "added": "2026-11-17",
+    "note": "",
+    "snap": {
+     "name": "Betashares Global Uranium ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 306,
+     "mer": 0.69,
+     "ret1y": -30.39,
+     "yld": 2.94,
      "as_of": "2026-10-30"
     }
    }
