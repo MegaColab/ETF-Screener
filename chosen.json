@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T01:58:29.347Z",
+ "updated": "2026-11-16T02:57:37.129Z",
  "lists": {
   "core": {
    "REIT": {
@@ -116,6 +116,21 @@
     }
    }
   },
-  "trading": {}
+  "trading": {
+   "SEMI": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Global X Semiconductor ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 953,
+     "mer": 0.45,
+     "ret1y": 50.76,
+     "yld": 8.55,
+     "as_of": "2026-10-30"
+    }
+   }
+  }
  }
 }
