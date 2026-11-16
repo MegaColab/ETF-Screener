@@ -1,118 +1,121 @@
 {
- "version": 1,
+ "version": 2,
  "updated": "2026-11-16T01:58:29.347Z",
- "picks": {
-  "REIT": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "VanEck FTSE International Property (Hedged) ETF",
-    "category": "Property - Global",
-    "type": "ETF",
-    "fum": 811,
-    "mer": 0.2,
-    "ret1y": 7.54,
-    "yld": 4.74,
-    "as_of": "2026-10-30"
+ "lists": {
+  "core": {
+   "REIT": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "VanEck FTSE International Property (Hedged) ETF",
+     "category": "Property - Global",
+     "type": "ETF",
+     "fum": 811,
+     "mer": 0.2,
+     "ret1y": 7.54,
+     "yld": 4.74,
+     "as_of": "2026-10-30"
+    }
+   },
+   "VEU": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Vanguard All-World ex US Shares Index ETF",
+     "category": "Equity - Global",
+     "type": "ETF",
+     "fum": 6319,
+     "mer": 0.04,
+     "ret1y": 6.1,
+     "yld": 2.12,
+     "as_of": "2026-10-30"
+    }
+   },
+   "VHY": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Vanguard Australian Shares High Yield ETF",
+     "category": "Equity - Australia Sectors",
+     "type": "ETF",
+     "fum": 8380,
+     "mer": 0.25,
+     "ret1y": 13.94,
+     "yld": 3.6,
+     "as_of": "2026-10-30"
+    }
+   },
+   "A200": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Betashares Australia 200 ETF",
+     "category": "Equity - Australia",
+     "type": "ETF",
+     "fum": 11430,
+     "mer": 0.04,
+     "ret1y": 5.06,
+     "yld": 3.36,
+     "as_of": "2026-10-30"
+    }
+   },
+   "IVV": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "iShares S&P 500 ETF",
+     "category": "Equity - Global",
+     "type": "ETF",
+     "fum": 14846,
+     "mer": 0.04,
+     "ret1y": 4.67,
+     "yld": 1.03,
+     "as_of": "2026-10-30"
+    }
+   },
+   "NDQ": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Betashares NASDAQ 100 ETF",
+     "category": "Equity - Global",
+     "type": "ETF",
+     "fum": 9036,
+     "mer": 0.48,
+     "ret1y": 3.28,
+     "yld": 1.51,
+     "as_of": "2026-10-30"
+    }
+   },
+   "U100": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Global X US 100 ETF",
+     "category": "Equity - Global",
+     "type": "ETF",
+     "fum": 104,
+     "mer": 0.18,
+     "ret1y": 1.07,
+     "yld": 12.04,
+     "as_of": "2026-10-30"
+    }
+   },
+   "GLIN": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "iShares Core FTSE Global Infrastructure (AUD Hedged) ETF",
+     "category": "Equity - Infrastructure",
+     "type": "ETF",
+     "fum": 2090,
+     "mer": 0.15,
+     "ret1y": 13.57,
+     "yld": 6.16,
+     "as_of": "2026-10-30"
+    }
    }
   },
-  "VEU": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "Vanguard All-World ex US Shares Index ETF",
-    "category": "Equity - Global",
-    "type": "ETF",
-    "fum": 6319,
-    "mer": 0.04,
-    "ret1y": 6.1,
-    "yld": 2.12,
-    "as_of": "2026-10-30"
-   }
-  },
-  "VHY": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "Vanguard Australian Shares High Yield ETF",
-    "category": "Equity - Australia Sectors",
-    "type": "ETF",
-    "fum": 8380,
-    "mer": 0.25,
-    "ret1y": 13.94,
-    "yld": 3.6,
-    "as_of": "2026-10-30"
-   }
-  },
-  "A200": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "Betashares Australia 200 ETF",
-    "category": "Equity - Australia",
-    "type": "ETF",
-    "fum": 11430,
-    "mer": 0.04,
-    "ret1y": 5.06,
-    "yld": 3.36,
-    "as_of": "2026-10-30"
-   }
-  },
-  "IVV": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "iShares S&P 500 ETF",
-    "category": "Equity - Global",
-    "type": "ETF",
-    "fum": 14846,
-    "mer": 0.04,
-    "ret1y": 4.67,
-    "yld": 1.03,
-    "as_of": "2026-10-30"
-   }
-  },
-  "NDQ": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "Betashares NASDAQ 100 ETF",
-    "category": "Equity - Global",
-    "type": "ETF",
-    "fum": 9036,
-    "mer": 0.48,
-    "ret1y": 3.28,
-    "yld": 1.51,
-    "as_of": "2026-10-30"
-   }
-  },
-  "U100": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "Global X US 100 ETF",
-    "category": "Equity - Global",
-    "type": "ETF",
-    "fum": 104,
-    "mer": 0.18,
-    "ret1y": 1.07,
-    "yld": 12.04,
-    "as_of": "2026-10-30"
-   }
-  },
-  "GLIN": {
-   "added": "2026-11-16",
-   "note": "",
-   "snap": {
-    "name": "iShares Core FTSE Global Infrastructure (AUD Hedged) ETF",
-    "category": "Equity - Infrastructure",
-    "type": "ETF",
-    "fum": 2090,
-    "mer": 0.15,
-    "ret1y": 13.57,
-    "yld": 6.16,
-    "as_of": "2026-10-30"
-   }
-  }
+  "trading": {}
  }
 }
