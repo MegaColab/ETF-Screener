@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T02:57:37.129Z",
+ "updated": "2026-11-16T02:57:52.240Z",
  "lists": {
   "core": {
    "REIT": {
@@ -128,6 +128,20 @@
      "mer": 0.45,
      "ret1y": 50.76,
      "yld": 8.55,
+     "as_of": "2026-10-30"
+    }
+   },
+   "HACK": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Betashares Global Cybersecurity ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 1724,
+     "mer": 0.67,
+     "ret1y": 26.97,
+     "yld": 3.24,
      "as_of": "2026-10-30"
     }
    }
