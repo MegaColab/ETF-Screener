@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T03:29:29.981Z",
+ "updated": "2026-11-16T08:25:16.495Z",
  "lists": {
   "core": {
    "REIT": {
@@ -112,6 +112,20 @@
      "mer": 0.15,
      "ret1y": 13.57,
      "yld": 6.16,
+     "as_of": "2026-10-30"
+    }
+   },
+   "VBND": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Vanguard Global Aggregate Bond Index (Hedged) ETF",
+     "category": "Fixed Income - Global",
+     "type": "ETF",
+     "fum": 5008,
+     "mer": 0.2,
+     "ret1y": -0.52,
+     "yld": 9.55,
      "as_of": "2026-10-30"
     }
    }
