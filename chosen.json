@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T08:25:16.495Z",
+ "updated": "2026-11-16T10:22:45.731Z",
  "lists": {
   "core": {
    "REIT": {
@@ -160,6 +160,20 @@
      "as_of": "2026-10-30"
     },
     "tag": "Cyber"
+   },
+   "FUEL": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Betashares Global Energy Companies Currency Hedged ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 297,
+     "mer": 0.57,
+     "ret1y": 57.05,
+     "yld": 3.75,
+     "as_of": "2026-10-30"
+    }
    }
   }
  }
