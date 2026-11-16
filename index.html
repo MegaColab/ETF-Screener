@@ -33,6 +33,7 @@ button{font:inherit;cursor:pointer}
 .btn,.row2 button,.chipbtn{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
 .btn:hover,.row2 button:hover,.chipbtn:hover{background:var(--hover)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 6px;color:var(--muted);font-size:12px}
+.chipbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .chipbtn{padding:3px 9px;font-size:12px;border-radius:999px}
 .types{display:flex;gap:6px;flex-wrap:wrap}
 .types label{display:inline-flex;gap:5px;align-items:center;font-size:13px;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer}
@@ -86,6 +87,9 @@ th.starh{width:34px;text-align:center;color:var(--muted);padding:9px 6px;font-si
 input.note{font:inherit;color:var(--text);background:transparent;border:1px solid transparent;border-bottom-color:var(--line);padding:3px 4px;width:100%;min-width:200px}
 input.note:focus{border-color:var(--accent);outline:none;background:var(--bg)}
 input.note[readonly]{border-color:transparent;cursor:default}
+input.note.tag{min-width:110px;width:130px}
+.starbtn.bolt{font-size:15px;filter:grayscale(1);opacity:.45}
+.starbtn.bolt.on,.starbtn.bolt:hover{filter:none;opacity:1}
 .dropped{display:block;font-size:11px;color:var(--warnText);background:var(--warn);border-radius:4px;padding:1px 6px;margin-top:2px;width:fit-content}
 </style>
 </head>
@@ -97,7 +101,8 @@ input.note[readonly]{border-color:transparent;cursor:default}
 
   <div class="tabs" role="tablist">
     <button class="tab on" role="tab" id="tab-all" data-tab="all" aria-selected="true">All ETFs<span class="cnt" id="n-all"></span></button>
-    <button class="tab" role="tab" id="tab-chosen" data-tab="chosen" aria-selected="false">★ Chosen<span class="cnt" id="n-chosen"></span></button>
+    <button class="tab" role="tab" id="tab-core" data-tab="core" aria-selected="false">★ Core<span class="cnt" id="n-core"></span></button>
+    <button class="tab" role="tab" id="tab-trading" data-tab="trading" aria-selected="false">⚡ Trading<span class="cnt" id="n-trading"></span></button>
     <span class="grow"></span>
     <span id="sync" class="sync" role="status" aria-live="polite"></span>
     <button class="btn" id="lock" type="button">🔒 Unlock editing</button>
@@ -107,10 +112,10 @@ input.note[readonly]{border-color:transparent;cursor:default}
     <button class="btn" id="tokok" type="button">Unlock</button>
     <button class="btn" id="tokno" type="button">Cancel</button>
     <span id="tokmsg" role="alert"></span>
-    <span class="help">Only the owner can change the Chosen list; everyone else can view it. The token is kept only in this browser and is sent only to api.github.com. <a href="https://github.com/MegaColab/ETF-Screener#editing-the-chosen-list" target="_blank" rel="noopener noreferrer">How to create one</a>.</span>
+    <span class="help">Only the owner can change the lists; everyone else can view it. The token is kept only in this browser and is sent only to api.github.com. <a href="https://github.com/MegaColab/ETF-Screener#editing-the-lists" target="_blank" rel="noopener noreferrer">How to create one</a>.</span>
   </div>
   <div class="chosenbar" id="chosenbar" hidden>
-    <span>Your shortlist, shown regardless of the filters. Anyone with the link can view it.</span>
+    <span id="listdesc"></span>
     <span class="grow"></span>
     <button class="btn" id="copylist" type="button">Copy list</button>
     <button class="btn" id="copylink" type="button">Copy link</button>
@@ -145,6 +150,8 @@ input.note[readonly]{border-color:transparent;cursor:default}
     <span class="types" id="typelist"></span>
   </div>
 
+  <div class="chips" id="tagchips" hidden></div>
+  <datalist id="taglist"></datalist>
   <div id="count" role="status" aria-live="polite"></div>
   <div class="tablewrap">
     <table id="t"><thead id="thead"></thead><tbody id="tbody"></tbody></table>
@@ -184,12 +191,16 @@ const COLS = [
   {k:'code', l:'Ticker'}, {k:'name', l:'Name'}, {k:'category', l:'Category'}, {k:'type', l:'Type'},
   {k:'fum', l:'AUM', num:1}, {k:'mer', l:'MER %', num:1}, {k:'ret1y', l:'1Y return', num:1}, {k:'yld', l:'Yield %', num:1}
 ];
-const COLS_CHOSEN = [...COLS, {k:'note', l:'Note'}, {k:'added', l:'Added'}];
-const cols = () => TAB === 'chosen' ? COLS_CHOSEN : COLS;
+const LISTS = ['core', 'trading'], LNAME = {core: 'Core', trading: 'Trading'};
+const LDESC = {core: 'Core: your stable, long-term picks.', trading: 'Trading: higher-volatility themes for shorter-term trades. Add a theme (e.g. semis, cyber) to each pick to group them.'};
+const COLS_TRADING = [...COLS, {k:'tag', l:'Theme'}, {k:'note', l:'Note'}, {k:'added', l:'Added'}];
+const COLS_CORE = [...COLS, {k:'note', l:'Note'}, {k:'added', l:'Added'}];
+const cols = () => TAB === 'trading' ? COLS_TRADING : TAB === 'core' ? COLS_CORE : COLS;
+const isList = () => TAB !== 'all';
 let ALL = [], META = {}, CATS = [], TYPES = [];
 let selCats = new Set(), selTypes = new Set();
 let sort = {k:'fum', d:-1};
-let TAB = 'all', picks = {}, token = null, canEdit = false, picksLoaded = false, snapsDone = false;
+let TAB = 'all', tagFilter = '', lists = {core: {}, trading: {}}, token = null, canEdit = false, picksLoaded = false, snapsDone = false;
 
 /* ---------- formatting ---------- */
 const fmtAum = m => m >= 1000 ? 'A$' + (m / 1000).toFixed(m >= 10000 ? 1 : 2) + 'B' : 'A$' + Math.round(m) + 'M';
@@ -322,7 +333,8 @@ function writeHash() {
   if (selCats.size !== CATS.length) p.set('cats', [...selCats].join('|'));
   if (selTypes.size !== TYPES.length) p.set('types', [...selTypes].join('|'));
   if (sort.k !== 'fum' || sort.d !== -1) p.set('sort', sort.k + (sort.d < 0 ? '-' : '+'));
-  if (TAB === 'chosen') p.set('tab', 'chosen');
+  if (isList()) p.set('tab', TAB);
+  if (TAB === 'trading' && tagFilter) p.set('tag', tagFilter);
   const s = p.toString();
   try { history.replaceState(null, '', s ? '#' + s : location.pathname + location.search); } catch (e) { /* sandboxed frames may refuse */ }
 }
@@ -334,13 +346,14 @@ function readHash() {
   if (p.has('yld')) $('#yld').value = p.get('yld');
   if (p.has('cats')) selCats = new Set(p.get('cats').split('|').filter(c => CATS.includes(c)));
   if (p.has('types')) selTypes = new Set(p.get('types').split('|').filter(t => TYPES.includes(t)));
+  if (p.has('tag')) tagFilter = p.get('tag');
   const s = /^(\w+)([+-])$/.exec(p.get('sort') || '');
-  if (s && COLS_CHOSEN.some(c => c.k === s[1])) sort = {k: s[1], d: s[2] === '-' ? -1 : 1};
+  if (s && COLS_TRADING.some(c => c.k === s[1])) sort = {k: s[1], d: s[2] === '-' ? -1 : 1};
 }
 
 /* ---------- UI building ---------- */
 function buildHead() {
-  $('#thead').innerHTML = '<tr><th scope="col" class="starh" title="Chosen">★</th>' + cols().map(c =>
+  $('#thead').innerHTML = '<tr><th scope="col" class="starh" title="Core list">★</th><th scope="col" class="starh" title="Trading list">⚡</th>' + cols().map(c =>
     `<th scope="col" class="${c.num ? 'num' : ''}" aria-sort="${sort.k === c.k ? (sort.d < 0 ? 'descending' : 'ascending') : 'none'}"><button type="button" data-k="${c.k}">${c.l}${sort.k === c.k ? (sort.d < 0 ? ' ▼' : ' ▲') : ''}</button></th>`).join('') + '</tr>';
 }
 function buildFilters() {
@@ -360,34 +373,53 @@ function syncChecks() {
 }
 
 function chosenRows() {
-  return Object.entries(picks).map(([code, p]) => {
+  return Object.entries(lists[TAB] || {}).map(([code, p]) => {
     const live = ALL.find(r => r.code === code), sn = p.snap || {};
     const base = live || {code, name: sn.name || code, category: sn.category || '', type: sn.type || '', fum: sn.fum ?? null, mer: sn.mer ?? null, ret1y: sn.ret1y ?? null, yld: sn.yld ?? null, _dropped: ALL.length > 0, _asof: sn.as_of || ''};
-    return {...base, note: p.note || '', added: p.added || ''};
+    return {...base, note: p.note || '', tag: p.tag || '', added: p.added || ''};
   });
 }
+function starCell(r, l) {
+  const on = !!lists[l][r.code], sym = l === 'core' ? (on ? '★' : '☆') : '⚡';
+  const tip = canEdit ? (on ? 'Remove from ' : 'Add to ') + LNAME[l] : 'Locked: unlock editing to change the lists';
+  return `<td class="starcell"><button type="button" class="starbtn${l === 'trading' ? ' bolt' : ''}${on ? ' on' : ''}" data-code="${esc(r.code)}" data-l="${l}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Add'} ${esc(r.code)} ${on ? 'from' : 'to'} ${LNAME[l]}" title="${tip}">${sym}</button></td>`;
+}
 function rowHtml(r) {
-  const on = !!picks[r.code], chosen = TAB === 'chosen';
   const cls = r.ret1y == null ? '' : r.ret1y > 0 ? 'up' : r.ret1y < 0 ? 'down' : '';
   const dropped = r._dropped ? `<span class="dropped">No longer in the data set (numbers as last seen ${esc(fmtDate(r._asof) || 'earlier')})</span>` : '';
-  const tip = canEdit ? (on ? 'Remove from Chosen' : 'Add to Chosen') : 'Locked: unlock editing to change Chosen';
-  return `<tr><td class="starcell"><button type="button" class="starbtn${on ? ' on' : ''}" data-code="${esc(r.code)}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Add'} ${esc(r.code)} ${on ? 'from' : 'to'} Chosen" title="${tip}">${on ? '★' : '☆'}</button></td>` +
+  const ro = canEdit ? '' : 'readonly';
+  return '<tr>' + starCell(r, 'core') + starCell(r, 'trading') +
     `<td class="code"><a href="https://www.tradingview.com/symbols/ASX-${encodeURIComponent(r.code)}/" target="_blank" rel="noopener noreferrer">${esc(r.code)}</a></td>` +
     `<td class="name">${esc(r.name)}${dropped}</td><td class="cat">${esc(r.category || '')}</td><td><span class="badge" title="${esc(TYPE_HELP[r.type] || r.type || '')}">${esc(r.type || '')}</span></td>` +
     `<td class="num">${r.fum == null ? '—' : fmtAum(r.fum)}</td><td class="num">${fmtPct(r.mer)}</td><td class="num ${cls}">${fmtPct(r.ret1y, true)}</td><td class="num">${fmtPct(r.yld)}</td>` +
-    (chosen ? `<td class="notecell"><input class="note" data-code="${esc(r.code)}" maxlength="200" value="${esc(r.note || '')}" placeholder="${canEdit ? 'Add a note…' : ''}" ${canEdit ? '' : 'readonly'} aria-label="Note for ${esc(r.code)}"></td><td>${esc(fmtDate(r.added) || '')}</td>` : '') + '</tr>';
+    (TAB === 'trading' ? `<td><input class="note tag" data-f="tag" data-code="${esc(r.code)}" maxlength="30" list="taglist" value="${esc(r.tag || '')}" placeholder="${canEdit ? 'Theme…' : ''}" ${ro} aria-label="Theme for ${esc(r.code)}"></td>` : '') +
+    (isList() ? `<td class="notecell"><input class="note" data-f="note" data-code="${esc(r.code)}" maxlength="200" value="${esc(r.note || '')}" placeholder="${canEdit ? 'Add a note…' : ''}" ${ro} aria-label="Note for ${esc(r.code)}"></td><td>${esc(fmtDate(r.added) || '')}</td>` : '') + '</tr>';
+}
+function updateCounts() {
+  $('#n-all').textContent = ALL.length ? `(${ALL.length})` : '';
+  for (const l of LISTS) $('#n-' + l).textContent = `(${Object.keys(lists[l]).length})`;
+}
+function renderTags(rows) {
+  const box = $('#tagchips'), on = TAB === 'trading';
+  const tags = [...new Set(chosenRows().map(r => r.tag).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  if (tagFilter && !tags.some(t => t.toLowerCase() === tagFilter.toLowerCase())) tagFilter = '';
+  box.hidden = !(on && tags.length);
+  $('#taglist').innerHTML = tags.map(t => `<option value="${esc(t)}">`).join('');
+  box.innerHTML = 'Theme: ' + [''].concat(tags).map(t => `<button type="button" class="chipbtn${(t || '').toLowerCase() === tagFilter.toLowerCase() ? ' on' : ''}" data-tag="${esc(t)}">${t ? esc(t) : 'All'}</button>`).join('');
 }
 
 function render() {
   if (!cols().some(c => c.k === sort.k)) sort = {k: 'fum', d: -1};
-  const chosen = TAB === 'chosen';
-  $('#filters').hidden = chosen; $('#aumchips').hidden = chosen; $('#chosenbar').hidden = !chosen;
+  const lst = isList();
+  $('#filters').hidden = lst; $('#aumchips').hidden = lst; $('#chosenbar').hidden = !lst;
+  $('#listdesc').textContent = lst ? LDESC[TAB] + ' Shown regardless of the filters. Anyone with the link can view it.' : '';
   document.querySelectorAll('.tab').forEach(t => { const on = t.dataset.tab === TAB; t.classList.toggle('on', on); t.setAttribute('aria-selected', String(on)); });
-  $('#n-all').textContent = ALL.length ? `(${ALL.length})` : '';
-  $('#n-chosen').textContent = `(${Object.keys(picks).length})`;
+  updateCounts(); renderTags();
   let rows;
-  if (chosen) rows = chosenRows();
-  else {
+  if (lst) {
+    rows = chosenRows();
+    if (TAB === 'trading' && tagFilter) rows = rows.filter(r => (r.tag || '').toLowerCase() === tagFilter.toLowerCase());
+  } else {
     const q = $('#q').value.trim().toLowerCase(), minA = num($('#aum').value) ?? 0, maxM = num($('#mer').value), minY = num($('#yld').value);
     rows = ALL.filter(r => r.fum >= minA && selCats.has(r.category) && selTypes.has(r.type) &&
       (maxM == null || (r.mer != null && r.mer <= maxM)) && (minY == null || (r.yld != null && r.yld >= minY)) &&
@@ -396,14 +428,14 @@ function render() {
   const col = cols().find(c => c.k === sort.k);
   rows.sort((a, b) => {
     const x = a[sort.k], y = b[sort.k];
-    if (x == null || y == null) return x == null && y == null ? a.code.localeCompare(b.code) : x == null ? 1 : -1;
+    if (x == null || y == null || x === '' || y === '') return (x == null || x === '') && (y == null || y === '') ? a.code.localeCompare(b.code) : (x == null || x === '') ? 1 : -1;
     const c = (col.num ? x - y : String(x).localeCompare(String(y))) * sort.d;
     return c || a.code.localeCompare(b.code);
   });
   $('#tbody').innerHTML = rows.length ? rows.map(rowHtml).join('') :
-    `<tr><td colspan="${cols().length + 1}" class="empty">${chosen ? 'Nothing chosen yet. Click a ☆ in the All ETFs tab to add one.' : 'No funds match these filters.'}</td></tr>`;
+    `<tr><td colspan="${cols().length + 2}" class="empty">${lst ? `Nothing in ${LNAME[TAB]} yet. Use the ${TAB === 'core' ? '☆' : '⚡'} in the All ETFs tab to add one.` : 'No funds match these filters.'}</td></tr>`;
   const total = rows.reduce((s, r) => s + (r.fum || 0), 0);
-  $('#count').textContent = (chosen ? `${rows.length} chosen` : `${rows.length} of ${ALL.length} funds`) + (rows.length ? ` · combined AUM ${fmtAum(total)}` : '');
+  $('#count').textContent = (lst ? `${rows.length} in ${LNAME[TAB]}` : `${rows.length} of ${ALL.length} funds`) + (rows.length ? ` · combined AUM ${fmtAum(total)}` : '');
   buildHead(); syncChecks(); writeHash();
 }
 
@@ -447,7 +479,13 @@ const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return 
 const lsSet = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) { /* storage may be blocked */ } };
 const b64d = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), c => c.charCodeAt(0)));
 const b64e = s => { let x = ''; new TextEncoder().encode(s).forEach(c => { x += String.fromCharCode(c); }); return btoa(x); };
-const normalize = d => { d = d && typeof d === 'object' ? d : {}; d.version = 1; d.picks = d.picks && typeof d.picks === 'object' ? d.picks : {}; return d; };
+const normalize = d => {
+  d = d && typeof d === 'object' ? d : {};
+  const L = d.lists && typeof d.lists === 'object' ? d.lists : {};
+  if (d.picks && typeof d.picks === 'object') { L.core = Object.assign({}, d.picks, L.core || {}); delete d.picks; } /* version 1 files: every pick moves to Core */
+  for (const l of LISTS) if (!L[l] || typeof L[l] !== 'object') L[l] = {};
+  d.version = 2; d.lists = L; return d;
+};
 const snapOf = r => ({name: r.name, category: r.category, type: r.type, fum: r.fum, mer: r.mer, ret1y: r.ret1y, yld: r.yld, as_of: META.as_of || ''});
 const today = () => new Date().toLocaleDateString('en-CA');
 token = lsGet(TOKEN_KEY); canEdit = !!token;
@@ -456,7 +494,7 @@ let queue = [], flushing = false, timer = null;
 function setSync(msg, err) { const e = $('#sync'); e.textContent = msg; e.classList.toggle('err', !!err); e.title = err ? 'Click to retry' : ''; }
 function updateLock() {
   $('#lock').textContent = canEdit ? '🔓 Editing on' : '🔒 Unlock editing';
-  $('#lock').title = canEdit ? 'Click to lock editing on this device' : 'Enter your GitHub token to edit the Chosen list';
+  $('#lock').title = canEdit ? 'Click to lock editing on this device' : 'Enter your GitHub token to edit the lists';
 }
 function lockOut() { token = null; lsSet(TOKEN_KEY, null); canEdit = false; updateLock(); }
 function openUnlock(msg) { $('#unlock').hidden = false; $('#tokmsg').textContent = msg || ''; $('#tok').focus(); }
@@ -483,21 +521,23 @@ async function ghWrite(data, sha, message) {
 }
 function applyOps(d, ops) {
   for (const o of ops) {
-    if (o.t === 'add') { if (!d.picks[o.code]) d.picks[o.code] = {added: o.added, note: '', snap: o.snap}; }
-    else if (o.t === 'remove') delete d.picks[o.code];
-    else if (o.t === 'note') { if (d.picks[o.code]) d.picks[o.code].note = o.note; }
-    else if (o.t === 'snap') { if (d.picks[o.code]) d.picks[o.code].snap = o.snap; }
+    const m = d.lists[o.l]; if (!m) continue;
+    if (o.t === 'add') { if (!m[o.code]) m[o.code] = {added: o.added, note: '', snap: o.snap}; }
+    else if (o.t === 'remove') delete m[o.code];
+    else if (o.t === 'note') { if (m[o.code]) m[o.code].note = o.note; }
+    else if (o.t === 'tag') { if (m[o.code]) { if (o.tag) m[o.code].tag = o.tag; else delete m[o.code].tag; } }
+    else if (o.t === 'snap') { if (m[o.code]) m[o.code].snap = o.snap; }
   }
 }
-const commitMsg = ops => ('Chosen: ' + ops.map(o => ({add: '+', remove: '-', note: 'note ', snap: 'refresh '}[o.t]) + o.code).join(', ')).slice(0, 100);
+const commitMsg = ops => ('Lists: ' + ops.map(o => o.l + ' ' + ({add: '+', remove: '-', note: 'note ', tag: 'theme ', snap: 'refresh '}[o.t]) + o.code).join(', ')).slice(0, 100);
 function softRender() {
   const a = document.activeElement;
-  if (a && a.classList && a.classList.contains('note')) $('#n-chosen').textContent = `(${Object.keys(picks).length})`; else render();
+  if (a && a.classList && a.classList.contains('note')) updateCounts(); else render();
 }
 function enqueue(op) {
-  if (op.t === 'note') queue = queue.filter(o => !(o.t === 'note' && o.code === op.code));
-  queue.push(op); applyOps({picks}, [op]);
-  setSync('Saving…'); clearTimeout(timer); timer = setTimeout(flush, op.t === 'note' ? 900 : 300);
+  if (op.t === 'note' || op.t === 'tag') queue = queue.filter(o => !(o.t === op.t && o.l === op.l && o.code === op.code));
+  queue.push(op); applyOps({lists}, [op]);
+  setSync('Saving…'); clearTimeout(timer); timer = setTimeout(flush, op.t === 'note' || op.t === 'tag' ? 900 : 300);
 }
 async function flush() {
   if (flushing || !queue.length) return;
@@ -507,7 +547,7 @@ async function flush() {
       const cur = await ghRead(); if (cur.stale) throw new Error('could not read the current list');
       applyOps(cur.data, ops); cur.data.updated = new Date().toISOString();
       await ghWrite(cur.data, cur.sha, commitMsg(ops));
-      queue = queue.filter(o => !ops.includes(o)); picks = cur.data.picks; queue.forEach(o => applyOps({picks}, [o]));
+      queue = queue.filter(o => !ops.includes(o)); lists = cur.data.lists; queue.forEach(o => applyOps({lists}, [o]));
       setSync('Saved ✓'); break;
     } catch (e) {
       if (e.conflict && ++attempt < 4) continue;
@@ -520,17 +560,17 @@ async function flush() {
   if (!failed && queue.length) flush();
 }
 async function loadPicks() {
-  try { const cur = await ghRead(); picks = cur.data.picks; picksLoaded = true; queue.forEach(o => applyOps({picks}, [o])); if (!queue.length) setSync(''); }
-  catch (e) { if (e.auth) lockOut(); setSync('Could not load the Chosen list: ' + e.message + '. Click to retry.', true); }
-  if (ALL.length) render(); else $('#n-chosen').textContent = `(${Object.keys(picks).length})`;
+  try { const cur = await ghRead(); lists = cur.data.lists; picksLoaded = true; queue.forEach(o => applyOps({lists}, [o])); if (!queue.length) setSync(''); }
+  catch (e) { if (e.auth) lockOut(); setSync('Could not load the lists: ' + e.message + '. Click to retry.', true); }
+  if (ALL.length) render(); else updateCounts();
   maybeRefreshSnaps();
 }
 function maybeRefreshSnaps() {
   if (!canEdit || snapsDone || !picksLoaded || !ALL.length) return;
   snapsDone = true;
-  for (const code of Object.keys(picks)) {
-    const r = ALL.find(x => x.code === code), sn = picks[code].snap;
-    if (r && (!sn || sn.as_of !== META.as_of)) enqueue({t: 'snap', code, snap: snapOf(r)});
+  for (const l of LISTS) for (const code of Object.keys(lists[l])) {
+    const r = ALL.find(x => x.code === code), sn = lists[l][code].snap;
+    if (r && (!sn || sn.as_of !== META.as_of)) enqueue({t: 'snap', l, code, snap: snapOf(r)});
   }
 }
 async function copyText(text, ok) {
@@ -538,18 +578,20 @@ async function copyText(text, ok) {
   catch (e) { setSync('Copy was blocked by the browser', true); }
 }
 
-document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => { TAB = t.dataset.tab; render(); }));
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => { TAB = t.dataset.tab; if (TAB !== 'trading') tagFilter = ''; render(); }));
+$('#tagchips').addEventListener('click', e => { const b = e.target.closest('[data-tag]'); if (b) { tagFilter = b.dataset.tag; render(); } });
 $('#tbody').addEventListener('click', e => {
   const b = e.target.closest('.starbtn'); if (!b) return;
-  if (!canEdit) { openUnlock('Editing is locked. Unlock with your GitHub token to change the Chosen list.'); return; }
-  const code = b.dataset.code;
-  if (picks[code]) enqueue({t: 'remove', code});
-  else { const r = ALL.find(x => x.code === code); if (!r) return; enqueue({t: 'add', code, added: today(), snap: snapOf(r)}); }
+  if (!canEdit) { openUnlock('Editing is locked. Unlock with your GitHub token to change the lists.'); return; }
+  const code = b.dataset.code, l = b.dataset.l;
+  if (lists[l][code]) enqueue({t: 'remove', l, code});
+  else { const r = ALL.find(x => x.code === code); if (!r) return; enqueue({t: 'add', l, code, added: today(), snap: snapOf(r)}); }
   render();
 });
 $('#tbody').addEventListener('input', e => {
   const i = e.target.closest('input.note'); if (!i || !canEdit) return;
-  enqueue({t: 'note', code: i.dataset.code, note: i.value.slice(0, 200)});
+  if (i.dataset.f === 'tag') enqueue({t: 'tag', l: TAB, code: i.dataset.code, tag: i.value.replace(/[;\r\n\t]+/g, ' ').trim().slice(0, 30)});
+  else enqueue({t: 'note', l: TAB, code: i.dataset.code, note: i.value.slice(0, 200)});
 });
 $('#sync').addEventListener('click', () => { if (!$('#sync').classList.contains('err')) return; if (queue.length) flush(); else loadPicks(); });
 $('#lock').addEventListener('click', () => { if (canEdit) { lockOut(); setSync(''); render(); } else openUnlock(); });
@@ -567,12 +609,14 @@ $('#tokok').addEventListener('click', async () => {
 $('#copylist').addEventListener('click', () => {
   const clean = v => String(v == null ? '' : v).replace(/[;\r\n\t]+/g, ' ').trim();
   const n2 = v => v == null ? '' : v.toFixed(2);
-  const head = ['Ticker', 'Name', 'Category', 'AUM (A$m)', 'MER (%)', '1yr Return (%)', 'Yield (%)', 'Note', 'Added'];
-  const lines = chosenRows().sort((a, b) => a.code.localeCompare(b.code)).map(r =>
-    [r.code, r.name, r.category, r.fum == null ? '' : Math.round(r.fum), n2(r.mer), n2(r.ret1y), n2(r.yld), r.note, r.added].map(clean).join(';'));
-  copyText(lines.length ? [head.join(';'), ...lines].join('\n') : 'No chosen ETFs yet', 'List copied');
+  const tr = TAB === 'trading';
+  const head = ['Ticker', 'Name', 'Category', 'AUM (A$m)', 'MER (%)', '1yr Return (%)', 'Yield (%)'].concat(tr ? ['Theme'] : [], ['Note', 'Added']);
+  let rows = chosenRows(); if (tr && tagFilter) rows = rows.filter(r => (r.tag || '').toLowerCase() === tagFilter.toLowerCase());
+  const lines = rows.sort((a, b) => (tr ? (a.tag || '~').localeCompare(b.tag || '~') : 0) || a.code.localeCompare(b.code)).map(r =>
+    [r.code, r.name, r.category, r.fum == null ? '' : Math.round(r.fum), n2(r.mer), n2(r.ret1y), n2(r.yld)].concat(tr ? [r.tag] : [], [r.note, r.added]).map(clean).join(';'));
+  copyText(lines.length ? [head.join(';'), ...lines].join('\n') : 'Nothing in ' + LNAME[TAB] + ' yet', LNAME[TAB] + ' list copied');
 });
-$('#copylink').addEventListener('click', () => copyText(location.origin + location.pathname + '#tab=chosen', 'Link copied'));
+$('#copylink').addEventListener('click', () => copyText(location.origin + location.pathname + '#tab=' + TAB + (TAB === 'trading' && tagFilter ? '&tag=' + encodeURIComponent(tagFilter) : ''), 'Link copied'));
 
 let imported = null;
 $('#file').addEventListener('change', async e => {
@@ -593,7 +637,7 @@ $('#cp').addEventListener('click', async () => {
 });
 
 /* ---------- boot ---------- */
-TAB = /(^|&)tab=chosen(&|$)/.test(location.hash.slice(1)) ? 'chosen' : 'all';
+{ const t = new URLSearchParams(location.hash.slice(1)).get('tab'); TAB = t === 'trading' ? 'trading' : (t === 'core' || t === 'chosen') ? 'core' : 'all'; } /* 'chosen' = links from before the two lists existed */
 updateLock(); buildHead(); loadPicks();
 fetch('data.csv', {cache: 'no-cache'}).then(r => { if (!r.ok) throw new Error('data.csv returned HTTP ' + r.status); return r.text(); })
   .then(t => { const d = parseCSV(t); setData(d.rows, d.meta); maybeRefreshSnaps(); })

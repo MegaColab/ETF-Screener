@@ -11,15 +11,18 @@ Data source: the ASX Investment Products monthly Excel report (sheet "Spotlight 
 - `index.html`: the whole app (HTML, CSS, JS, no dependencies).
 - `data.csv`: the data. Line 1 is a comment with the as-of date and source.
 - `docs/gemini-monthly-update-prompt.md`: prompt for a monthly automated refresh.
-- Branch `picks`, file `chosen.json`: your shortlist (the Chosen tab). It lives on its own branch so saving a pick never triggers a site rebuild, and a monthly data update never touches it.
+- Branch `picks`, file `chosen.json`: your two lists (Core and Trading). It lives on its own branch so saving a pick never triggers a site rebuild, and a monthly data update never touches it.
 
-## The Chosen shortlist
+## The Core and Trading lists
 
-- Click the ☆ at the left of any ETF to add it to your shortlist; the **★ Chosen** tab lists your picks with a note and the date added.
-- The list is stored in this repo (branch `picks`), so it is the same on every device. It is public: anyone with the site link can view it, and **Copy link** gives a direct link to the Chosen tab.
-- Chosen ignores the filters. If a pick later drops out of the data set (under A$100M or delisted), it stays in the list with its last-known numbers and a "No longer in the data set" tag.
+- Every ETF row has a ★ (Core: stable, long-term picks) and a ⚡ (Trading: higher-volatility themes). One ETF can be in both lists.
+- The **★ Core** and **⚡ Trading** tabs show each list with a note and the date added. On the Trading tab you can also give each pick a **Theme** (for example semis, cyber, memory) and filter the list by theme.
+- **Copy list** copies the open tab as semicolon-separated text with a header row (on Trading, filtered by theme if one is selected). **Copy link** opens the same tab, and theme, for anyone you send it to.
+- The lists are stored in this repo (branch `picks`), so they are the same on every device. They are public: anyone with the site link can view them.
+- The lists ignore the filters. If a pick later drops out of the data set (under A$100M or delisted), it stays with its last-known numbers and a "No longer in the data set" tag.
+- Older `#tab=chosen` links open the Core tab.
 
-## Editing the Chosen list
+## Editing the lists
 
 Everyone can view the list; only you can change it, using a GitHub token saved in that browser. Set up once per device:
 
