@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-16T01:57:39.163Z",
+ "updated": "2026-11-16T01:57:44.780Z",
  "picks": {
   "REIT": {
    "added": "2026-11-16",
@@ -83,6 +83,20 @@
     "mer": 0.48,
     "ret1y": 3.28,
     "yld": 1.51,
+    "as_of": "2026-10-30"
+   }
+  },
+  "U100": {
+   "added": "2026-11-16",
+   "note": "",
+   "snap": {
+    "name": "Global X US 100 ETF",
+    "category": "Equity - Global",
+    "type": "ETF",
+    "fum": 104,
+    "mer": 0.18,
+    "ret1y": 1.07,
+    "yld": 12.04,
     "as_of": "2026-10-30"
    }
   }
