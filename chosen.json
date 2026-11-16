@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T10:28:01.418Z",
+ "updated": "2026-11-16T21:22:39.576Z",
  "lists": {
   "core": {
    "REIT": {
@@ -200,6 +200,20 @@
      "mer": 0.69,
      "ret1y": -16.15,
      "yld": 16.39,
+     "as_of": "2026-10-30"
+    }
+   },
+   "WIRE": {
+    "added": "2026-11-17",
+    "note": "",
+    "snap": {
+     "name": "Global X Copper Miners ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 797,
+     "mer": 0.65,
+     "ret1y": 15.38,
+     "yld": 3.42,
      "as_of": "2026-10-30"
     }
    }
