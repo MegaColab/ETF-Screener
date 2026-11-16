@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T10:27:11.838Z",
+ "updated": "2026-11-16T10:27:16.909Z",
  "lists": {
   "core": {
    "REIT": {
@@ -186,6 +186,34 @@
      "mer": 0.57,
      "ret1y": -17.94,
      "yld": 0.06,
+     "as_of": "2026-10-30"
+    }
+   },
+   "ACDC": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Global X Battery Tech & Lithium ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 502,
+     "mer": 0.69,
+     "ret1y": -16.15,
+     "yld": 16.39,
+     "as_of": "2026-10-30"
+    }
+   },
+   "DFND": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "VanEck Global Defence ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 241,
+     "mer": 0.65,
+     "ret1y": -13.68,
+     "yld": 3.69,
      "as_of": "2026-10-30"
     }
    }
