@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-16T01:57:33.589Z",
+ "updated": "2026-11-16T01:57:36.531Z",
  "picks": {
   "REIT": {
    "added": "2026-11-16",
@@ -55,6 +55,20 @@
     "mer": 0.04,
     "ret1y": 5.06,
     "yld": 3.36,
+    "as_of": "2026-10-30"
+   }
+  },
+  "IVV": {
+   "added": "2026-11-16",
+   "note": "",
+   "snap": {
+    "name": "iShares S&P 500 ETF",
+    "category": "Equity - Global",
+    "type": "ETF",
+    "fum": 14846,
+    "mer": 0.04,
+    "ret1y": 4.67,
+    "yld": 1.03,
     "as_of": "2026-10-30"
    }
   }
