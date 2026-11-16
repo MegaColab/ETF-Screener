@@ -1,5 +1,20 @@
 {
  "version": 1,
- "updated": "",
- "picks": {}
+ "updated": "2026-11-16T01:56:59.213Z",
+ "picks": {
+  "REIT": {
+   "added": "2026-11-16",
+   "note": "",
+   "snap": {
+    "name": "VanEck FTSE International Property (Hedged) ETF",
+    "category": "Property - Global",
+    "type": "ETF",
+    "fum": 811,
+    "mer": 0.2,
+    "ret1y": 7.54,
+    "yld": 4.74,
+    "as_of": "2026-10-30"
+   }
+  }
+ }
 }
