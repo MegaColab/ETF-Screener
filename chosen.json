@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T10:22:45.731Z",
+ "updated": "2026-11-16T10:27:11.838Z",
  "lists": {
   "core": {
    "REIT": {
@@ -172,6 +172,20 @@
      "mer": 0.57,
      "ret1y": 57.05,
      "yld": 3.75,
+     "as_of": "2026-10-30"
+    }
+   },
+   "RBTZ": {
+    "added": "2026-11-16",
+    "note": "",
+    "snap": {
+     "name": "Betashares Global Robotics and Artificial Intelligence ETF",
+     "category": "Equity - Global Sectors",
+     "type": "ETF",
+     "fum": 268,
+     "mer": 0.57,
+     "ret1y": -17.94,
+     "yld": 0.06,
      "as_of": "2026-10-30"
     }
    }
