@@ -565,9 +565,12 @@ $('#tokok').addEventListener('click', async () => {
   } catch (err) { m.textContent = err.message; }
 });
 $('#copylist').addEventListener('click', () => {
+  const clean = v => String(v == null ? '' : v).replace(/[;\r\n\t]+/g, ' ').trim();
+  const n2 = v => v == null ? '' : v.toFixed(2);
+  const head = ['Ticker', 'Name', 'Category', 'AUM (A$m)', 'MER (%)', '1yr Return (%)', 'Yield (%)', 'Note', 'Added'];
   const lines = chosenRows().sort((a, b) => a.code.localeCompare(b.code)).map(r =>
-    [r.code, r.name, r.fum == null ? '' : fmtAum(r.fum), r.mer == null ? '' : 'MER ' + fmtPct(r.mer), r.ret1y == null ? '' : '1Y ' + fmtPct(r.ret1y, true), r.note].filter(Boolean).join(' | '));
-  copyText(lines.join('\n') || 'No chosen ETFs yet', 'List copied');
+    [r.code, r.name, r.category, r.fum == null ? '' : Math.round(r.fum), n2(r.mer), n2(r.ret1y), n2(r.yld), r.note, r.added].map(clean).join(';'));
+  copyText(lines.length ? [head.join(';'), ...lines].join('\n') : 'No chosen ETFs yet', 'List copied');
 });
 $('#copylink').addEventListener('click', () => copyText(location.origin + location.pathname + '#tab=chosen', 'Link copied'));
 
