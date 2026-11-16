@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-16T01:57:36.531Z",
+ "updated": "2026-11-16T01:57:39.163Z",
  "picks": {
   "REIT": {
    "added": "2026-11-16",
@@ -69,6 +69,20 @@
     "mer": 0.04,
     "ret1y": 4.67,
     "yld": 1.03,
+    "as_of": "2026-10-30"
+   }
+  },
+  "NDQ": {
+   "added": "2026-11-16",
+   "note": "",
+   "snap": {
+    "name": "Betashares NASDAQ 100 ETF",
+    "category": "Equity - Global",
+    "type": "ETF",
+    "fum": 9036,
+    "mer": 0.48,
+    "ret1y": 3.28,
+    "yld": 1.51,
     "as_of": "2026-10-30"
    }
   }
