@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated": "2026-11-16T21:24:28.025Z",
+ "updated": "2026-11-17T04:11:15.328Z",
  "lists": {
   "core": {
    "REIT": {
@@ -140,6 +140,20 @@
      "mer": 0.53,
      "ret1y": 6.74,
      "yld": 18.17,
+     "as_of": "2026-10-30"
+    }
+   },
+   "MVA": {
+    "added": "2026-11-17",
+    "note": "",
+    "snap": {
+     "name": "VanEck Australian Property ETF",
+     "category": "Property - Australia",
+     "type": "ETF",
+     "fum": 866,
+     "mer": 0.35,
+     "ret1y": -10.14,
+     "yld": 5.91,
      "as_of": "2026-10-30"
     }
    }
